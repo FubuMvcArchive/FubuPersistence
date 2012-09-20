@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EA5788C7-1191-4474-B59F-CDC2767A0E3A}</ProjectGuid>
+    <ProjectGuid>{C608A15B-E80F-40DE-B54B-A32315DF1955}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FubuPersistence</RootNamespace>
-    <AssemblyName>FubuPersistence</AssemblyName>
+    <RootNamespace>FubuPersistence.StructureMap</RootNamespace>
+    <AssemblyName>FubuPersistence.StructureMap</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,6 +34,9 @@
     <Reference Include="FubuCore">
       <HintPath>..\packages\FubuCore.0.9.9.180\lib\FubuCore.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,36 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="Entity.cs" />
-    <Compile Include="EntityRepository.cs" />
-    <Compile Include="ICache.cs" />
-    <Compile Include="ICompleteReset.cs" />
-    <Compile Include="IEntity.cs" />
-    <Compile Include="IEntityRepository.cs" />
-    <Compile Include="IEntityRepositoryBuilder.cs" />
-    <Compile Include="InMemory\InMemoryPersistor.cs" />
-    <Compile Include="InMemory\InMemoryReadOnlySession.cs" />
-    <Compile Include="InMemory\InMemoryReset.cs" />
-    <Compile Include="InMemory\InMemoryUnitOfWork.cs" />
-    <Compile Include="IPersistor.cs" />
-    <Compile Include="IReadOnlySession.cs" />
-    <Compile Include="IReset.cs" />
-    <Compile Include="ITransaction.cs" />
-    <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Storage\GlobalEntityStorage.cs" />
-    <Compile Include="Storage\GlobalEntityStoragePolicy.cs" />
-    <Compile Include="Storage\IEntityStorage.cs" />
-    <Compile Include="Storage\IEntityStoragePolicy.cs" />
-    <Compile Include="Storage\IStorageRegistry.cs" />
-    <Compile Include="Storage\StorageRegistry.cs" />
+    <Compile Include="InMemoryRegistry.cs" />
+    <Compile Include="InMemoryTransaction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FubuPersistence\FubuPersistence.csproj">
+      <Project>{EA5788C7-1191-4474-B59F-CDC2767A0E3A}</Project>
+      <Name>FubuPersistence</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

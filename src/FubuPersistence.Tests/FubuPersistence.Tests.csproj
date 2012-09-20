@@ -71,9 +71,14 @@
     <Compile Include="Storage\GlobalEntityStorageTester.cs" />
     <Compile Include="Storage\when_finding_the_entity_storage_with_matching_policies.cs" />
     <Compile Include="Storage\when_finding_the_entity_storage_with_no_matching_policies.cs" />
+    <Compile Include="StructureMap\BootstrapSmokeTest.cs" />
     <Compile Include="when_updating_an_entity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FubuPersistence.StructureMap\FubuPersistence.StructureMap.csproj">
+      <Project>{C608A15B-E80F-40DE-B54B-A32315DF1955}</Project>
+      <Name>FubuPersistence.StructureMap</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FubuPersistence\FubuPersistence.csproj">
       <Project>{EA5788C7-1191-4474-B59F-CDC2767A0E3A}</Project>
       <Name>FubuPersistence</Name>
