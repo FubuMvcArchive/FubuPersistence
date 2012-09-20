@@ -71,7 +71,7 @@
     <Compile Include="Storage\GlobalEntityStorageTester.cs" />
     <Compile Include="Storage\when_finding_the_entity_storage_with_matching_policies.cs" />
     <Compile Include="Storage\when_finding_the_entity_storage_with_no_matching_policies.cs" />
-    <Compile Include="StructureMap\BootstrapSmokeTest.cs" />
+    <Compile Include="StructureMap\BootstrappingSmokeTests.cs" />
     <Compile Include="when_updating_an_entity.cs" />
   </ItemGroup>
   <ItemGroup>
