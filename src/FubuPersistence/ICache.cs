@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using FubuCore;
 
 namespace FubuPersistence
 {
+    [MarkedForTermination, Obsolete]
     public interface ICache
     {
         IEnumerable<T> FetchAll<T>(Func<IEnumerable<T>> finder) where T : class, IEntity;

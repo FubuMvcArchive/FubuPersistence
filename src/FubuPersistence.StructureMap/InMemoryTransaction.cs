@@ -25,9 +25,12 @@ namespace FubuPersistence.StructureMap
             }
         }
 
-        public void WithRepository(Action<IEntityRepository> action)
+        public void Execute<T>(Action<T> action) where T : class
         {
-            Execute(new ServiceArguments(), action);
+            using (var nested = _container.GetNestedContainer())
+            {
+                action(nested.GetInstance<T>());
+            }
         }
     }
 }

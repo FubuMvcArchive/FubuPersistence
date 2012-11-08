@@ -1,5 +1,9 @@
+using System;
+using FubuCore;
+
 namespace FubuPersistence.Storage
 {
+    [MarkedForTermination, Obsolete]
     public class GlobalEntityStoragePolicy : IEntityStoragePolicy
     {
         public bool Matches<T>() where T : class, IEntity

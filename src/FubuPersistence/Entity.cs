@@ -6,6 +6,8 @@ namespace FubuPersistence
     public abstract class Entity : IEntity
     {
         public Guid Id { get; set; }
+
+        // TODO -- eliminate this
         public Milestone Deleted { get; set; }
 
         public bool Equals(Entity other)

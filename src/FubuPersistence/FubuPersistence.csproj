@@ -54,14 +54,10 @@
     <Compile Include="IEntityRepository.cs" />
     <Compile Include="IEntityRepositoryBuilder.cs" />
     <Compile Include="InMemory\InMemoryPersistor.cs" />
-    <Compile Include="InMemory\InMemoryReadOnlySession.cs" />
     <Compile Include="InMemory\InMemoryReset.cs" />
-    <Compile Include="InMemory\InMemoryUnitOfWork.cs" />
     <Compile Include="IPersistor.cs" />
-    <Compile Include="IReadOnlySession.cs" />
     <Compile Include="IReset.cs" />
     <Compile Include="ITransaction.cs" />
-    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Storage\GlobalEntityStorage.cs" />
     <Compile Include="Storage\GlobalEntityStoragePolicy.cs" />
     <Compile Include="Storage\IEntityStorage.cs" />

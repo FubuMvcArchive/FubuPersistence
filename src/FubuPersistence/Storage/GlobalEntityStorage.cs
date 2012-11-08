@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace FubuPersistence.Storage
 {
+    // TODO -- rename to simple
     public class GlobalEntityStorage<T> : IEntityStorage<T> where T : class, IEntity
     {
         private readonly IPersistor _persistor;

@@ -7,6 +7,8 @@ namespace FubuPersistence
     public interface IEntity
     {
         Guid Id { get; set; }
+
+        // TODO -- move this to a separate entity interface
         Milestone Deleted { get; set; }
     }
 }
