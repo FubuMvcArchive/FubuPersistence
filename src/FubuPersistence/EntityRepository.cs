@@ -11,23 +11,21 @@ namespace FubuPersistence
     {
         private readonly IStorageFactory _storageFactory;
         private readonly Cache<Type, object> _storageProviders = new Cache<Type, object>();
-        private readonly ISystemTime _systemTime;
 
-        public EntityRepository(IStorageFactory storageFactory, ISystemTime systemTime)
+        public EntityRepository(IStorageFactory storageFactory)
         {
             _storageFactory = storageFactory;
-            _systemTime = systemTime;
         }
 
         public IQueryable<T> All<T>() where T : class, IEntity
         {
-            return storage<T>().All().Where(x => x.Deleted == null);
+            return storage<T>().All();
         }
 
 
         public T FindWhere<T>(Expression<Func<T, bool>> filter) where T : class, IEntity
         {
-            var raw = storage<T>().All().FirstOrDefault(filter);
+            var raw = storage<T>().FindSingle(filter);
             return raw == null ? null : Find<T>(raw.Id);
         }
 
@@ -49,9 +47,7 @@ namespace FubuPersistence
 
         public void Remove<T>(T model) where T : class, IEntity
         {
-            model.Deleted = new Milestone(_systemTime.UtcNow());
-
-            Update(model);
+            storage<T>().Remove(model);
         }
 
         public void DeleteAll<T>() where T : class, IEntity

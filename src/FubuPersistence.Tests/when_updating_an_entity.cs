@@ -30,12 +30,7 @@ namespace FubuPersistence.Tests
             theStorage.AssertWasCalled(x => x.Update(theEntity));
         }
 
-        [Test]
-        public void removing_still_needs_to_update()
-        {
-            ClassUnderTest.Remove(theEntity);
-            theStorage.AssertWasCalled(x => x.Update(theEntity));
-        }
+
 
     }
 }

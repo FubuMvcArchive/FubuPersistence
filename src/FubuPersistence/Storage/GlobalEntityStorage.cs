@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace FubuPersistence.Storage
 {
@@ -36,6 +37,11 @@ namespace FubuPersistence.Storage
         public void DeleteAll()
         {
             _persistor.DeleteAll<T>();
+        }
+
+        public T FindSingle(Expression<Func<T, bool>> filter)
+        {
+            return _persistor.FindSingle(filter);
         }
     }
 }

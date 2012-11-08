@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace FubuPersistence.Storage
 {
@@ -11,5 +12,6 @@ namespace FubuPersistence.Storage
 
         IQueryable<T> All();
         void DeleteAll();
+        T FindSingle(Expression<Func<T, bool>> filter);
     }
 }

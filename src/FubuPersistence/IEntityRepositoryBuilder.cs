@@ -21,7 +21,7 @@ namespace FubuPersistence
         private static EntityRepository basicRepository(EntityRepositoryExpression expression)
         {
             var storage = new StorageFactory(new InMemoryPersistor(), expression.Policies);
-            return new EntityRepository(storage, expression.Clock);
+            return new EntityRepository(storage);
         }
 
         public void UseSystemTime(ISystemTime clock)

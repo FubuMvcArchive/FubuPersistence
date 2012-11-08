@@ -14,5 +14,6 @@ namespace FubuPersistence
         T FindBy<T>(Expression<Func<T, bool>> filter) where T : class, IEntity;
 
         T Find<T>(Guid id) where T : class, IEntity;
+        T FindSingle<T>(Expression<Func<T, bool>> filter) where T : class, IEntity;
     }
 }

@@ -49,6 +49,11 @@ namespace FubuPersistence.InMemory
             return FindBy<T>(x => x.Id == id);
         }
 
+        public T FindSingle<T>(Expression<Func<T, bool>> filter) where T : class, IEntity
+        {
+            return LoadAll<T>().FirstOrDefault(filter);
+        }
+
         public void WipeAndReplace(IEnumerable<IEntity> entities)
         {
             _objects.Clear();

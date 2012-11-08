@@ -66,6 +66,7 @@
     <Compile Include="Storage\IEntityStorage.cs" />
     <Compile Include="Storage\IEntityStoragePolicy.cs" />
     <Compile Include="Storage\IStorageFactory.cs" />
+    <Compile Include="Storage\SoftDeletedEntityStorage.cs" />
     <Compile Include="Storage\StorageFactory.cs" />
   </ItemGroup>
   <ItemGroup>
