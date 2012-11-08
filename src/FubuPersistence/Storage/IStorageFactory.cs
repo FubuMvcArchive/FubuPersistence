@@ -1,7 +1,6 @@
 namespace FubuPersistence.Storage
 {
-    // TODO -- rename to StorageFactory
-    public interface IStorageRegistry
+    public interface IStorageFactory
     {
         IEntityStorage<T> StorageFor<T>() where T : class, IEntity;
     }

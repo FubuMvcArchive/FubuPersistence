@@ -6,7 +6,7 @@ using Rhino.Mocks;
 namespace FubuPersistence.Tests.Storage
 {
     [TestFixture]
-    public class when_finding_the_entity_storage_with_matching_policies : InteractionContext<StorageRegistry>
+    public class when_finding_the_entity_storage_with_matching_policies : InteractionContext<StorageFactory>
     {
         private IEntityStoragePolicy e1;
         private IEntityStoragePolicy e2;

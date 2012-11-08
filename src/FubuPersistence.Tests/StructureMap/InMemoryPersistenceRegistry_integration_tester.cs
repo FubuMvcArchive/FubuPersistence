@@ -66,7 +66,7 @@ namespace FubuPersistence.Tests.StructureMap
         [Test]
         public void storage_registry_is_registered()
         {
-            theContainer.GetInstance<IStorageRegistry>().ShouldBeOfType<StorageRegistry>();
+            theContainer.GetInstance<IStorageFactory>().ShouldBeOfType<StorageFactory>();
         }
 
         [Test]

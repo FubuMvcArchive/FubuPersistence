@@ -9,13 +9,13 @@ namespace FubuPersistence
 {
     public class EntityRepository : IEntityRepository
     {
-        private readonly IStorageRegistry _storageRegistry;
+        private readonly IStorageFactory _storageFactory;
         private readonly Cache<Type, object> _storageProviders = new Cache<Type, object>();
         private readonly ISystemTime _systemTime;
 
-        public EntityRepository(IStorageRegistry storageRegistry, ISystemTime systemTime)
+        public EntityRepository(IStorageFactory storageFactory, ISystemTime systemTime)
         {
-            _storageRegistry = storageRegistry;
+            _storageFactory = storageFactory;
             _systemTime = systemTime;
         }
 
@@ -61,7 +61,7 @@ namespace FubuPersistence
 
         private IEntityStorage<T> storage<T>() where T : class, IEntity
         {
-            _storageProviders.Fill(typeof(T), t => _storageRegistry.StorageFor<T>());
+            _storageProviders.Fill(typeof(T), t => _storageFactory.StorageFor<T>());
 
             return (IEntityStorage<T>)_storageProviders[typeof(T)];
         }

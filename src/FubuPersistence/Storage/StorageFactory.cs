@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace FubuPersistence.Storage
 {
-    public class StorageRegistry : IStorageRegistry
+    public class StorageFactory : IStorageFactory
     {
         private readonly IPersistor _persistor;
         private readonly IEnumerable<IEntityStoragePolicy> _policies;
 
-        public StorageRegistry(IPersistor persistor, IEnumerable<IEntityStoragePolicy> policies)
+        public StorageFactory(IPersistor persistor, IEnumerable<IEntityStoragePolicy> policies)
         {
             _persistor = persistor;
             _policies = policies;

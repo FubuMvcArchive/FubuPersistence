@@ -20,7 +20,7 @@ namespace FubuPersistence
 
         private static EntityRepository basicRepository(EntityRepositoryExpression expression)
         {
-            var storage = new StorageRegistry(new InMemoryPersistor(), expression.Policies);
+            var storage = new StorageFactory(new InMemoryPersistor(), expression.Policies);
             return new EntityRepository(storage, expression.Clock);
         }
 

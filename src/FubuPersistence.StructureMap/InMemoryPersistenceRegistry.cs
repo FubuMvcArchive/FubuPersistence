@@ -18,7 +18,7 @@ namespace FubuPersistence.StructureMap
             For<ITransaction>().Use<InMemoryTransaction>();
 
             For<IEntityRepository>().Use<EntityRepository>();
-            For<IStorageRegistry>().Use<StorageRegistry>();
+            For<IStorageFactory>().Use<StorageFactory>();
 
             ForSingletonOf<IPersistor>().Use<InMemoryPersistor>();
 

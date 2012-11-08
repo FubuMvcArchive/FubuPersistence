@@ -17,7 +17,7 @@ namespace FubuPersistence.Tests
             theEntity = new FakeEntity();
 
             theStorage = MockFor<IEntityStorage<FakeEntity>>();
-            MockFor<IStorageRegistry>().Stub(x => x.StorageFor<FakeEntity>()).Return(
+            MockFor<IStorageFactory>().Stub(x => x.StorageFor<FakeEntity>()).Return(
                 theStorage);
 
             LocalSystemTime = DateTime.Now;
