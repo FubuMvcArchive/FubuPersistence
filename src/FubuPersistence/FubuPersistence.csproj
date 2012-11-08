@@ -48,15 +48,11 @@
     </Compile>
     <Compile Include="Entity.cs" />
     <Compile Include="EntityRepository.cs" />
-    <Compile Include="ICache.cs" />
-    <Compile Include="ICompleteReset.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IEntityRepository.cs" />
     <Compile Include="IEntityRepositoryBuilder.cs" />
     <Compile Include="InMemory\InMemoryPersistor.cs" />
-    <Compile Include="InMemory\InMemoryReset.cs" />
     <Compile Include="IPersistor.cs" />
-    <Compile Include="IReset.cs" />
     <Compile Include="ITransaction.cs" />
     <Compile Include="Storage\GlobalEntityStorage.cs" />
     <Compile Include="Storage\GlobalEntityStoragePolicy.cs" />
@@ -68,7 +64,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reset\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

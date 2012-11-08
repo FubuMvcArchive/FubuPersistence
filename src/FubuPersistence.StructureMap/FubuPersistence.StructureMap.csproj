@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompleteReset.cs" />
     <Compile Include="InMemoryRegistry.cs" />
     <Compile Include="InMemoryTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

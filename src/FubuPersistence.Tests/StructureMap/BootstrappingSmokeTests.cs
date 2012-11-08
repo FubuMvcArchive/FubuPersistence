@@ -23,10 +23,6 @@ namespace FubuPersistence.Tests.StructureMap
             get { return theContainer.GetInstance<IEntityRepository>(); }
         }
 
-        private ICompleteReset theCompleteReset
-        {
-            get { return theContainer.GetInstance<ICompleteReset>(); }
-        }
 
         [Test]
         public void can_persist_and_retrieve_an_entities()
@@ -38,20 +34,6 @@ namespace FubuPersistence.Tests.StructureMap
             theRepository.Find<FakeEntity>(entity.Id).ShouldBeTheSameAs(entity);
         }
 
-        [Test]
-        public void can_wipe_and_replace()
-        {
-            var oldEntity = new FakeEntity { Id = Guid.NewGuid() };
-            
-            theRepository.Update(oldEntity);
-
-            var newEntity = new FakeEntity { Id = Guid.NewGuid() };
-
-            theCompleteReset.ResetState(new IEntity[] { newEntity });
-
-            theRepository.Find<FakeEntity>(oldEntity.Id).ShouldBeNull();
-            theRepository.Find<FakeEntity>(newEntity.Id).ShouldBeTheSameAs(newEntity);
-        }
 
         public class TestRegistry : Registry
         {

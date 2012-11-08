@@ -9,9 +9,6 @@ namespace FubuPersistence.StructureMap
     {
         public InMemoryRegistry()
         {
-            For<IReset>().Use<InMemoryReset>();
-            For<ICompleteReset>().Use<CompleteReset>();
-
             For<ITransaction>().Use<InMemoryTransaction>();
 
             For<IEntityRepository>().Use<EntityRepository>();
