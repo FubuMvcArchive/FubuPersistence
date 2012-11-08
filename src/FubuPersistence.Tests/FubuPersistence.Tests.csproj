@@ -68,6 +68,7 @@
     <Compile Include="FakeEntity.cs" />
     <Compile Include="InMemory\InMemoryPersistorTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reset\CompleteResetTester.cs" />
     <Compile Include="Storage\GlobalEntityStorageTester.cs" />
     <Compile Include="Storage\when_finding_the_entity_storage_with_matching_policies.cs" />
     <Compile Include="Storage\when_finding_the_entity_storage_with_no_matching_policies.cs" />
