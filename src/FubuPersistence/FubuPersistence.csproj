@@ -51,6 +51,7 @@
     <Compile Include="IEntity.cs" />
     <Compile Include="IEntityRepository.cs" />
     <Compile Include="IEntityRepositoryBuilder.cs" />
+    <Compile Include="InMemory\InMemoryPersistenceReset.cs" />
     <Compile Include="InMemory\InMemoryPersistor.cs" />
     <Compile Include="IPersistor.cs" />
     <Compile Include="ITransaction.cs" />

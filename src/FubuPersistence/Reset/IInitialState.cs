@@ -4,4 +4,12 @@ namespace FubuPersistence.Reset
     {
         void Load();
     }
+
+    public class NulloInitialState : IInitialState
+    {
+        public void Load()
+        {
+            // nothing
+        }
+    }
 }

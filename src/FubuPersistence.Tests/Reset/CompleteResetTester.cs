@@ -18,10 +18,7 @@ namespace FubuPersistence.Tests.Reset
         {
             Tracer.Messages.Clear();
 
-            var services = new InMemoryServiceLocator();
-            services.Add<IInitialState>(new FakeInitialState());
-
-            theCompleteReset = new CompleteReset(MockRepository.GenerateMock<ILogger>(), services,
+            theCompleteReset = new CompleteReset(MockRepository.GenerateMock<ILogger>(), new FakeInitialState(), 
                                                  new FakePersistenceReset(),
                                                  new IServiceReset[]
                                                  {

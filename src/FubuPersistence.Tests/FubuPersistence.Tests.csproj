@@ -69,10 +69,11 @@
     <Compile Include="InMemory\InMemoryPersistorTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reset\CompleteResetTester.cs" />
+    <Compile Include="InMemory\InMemoryPersistentResetTester.cs" />
     <Compile Include="Storage\GlobalEntityStorageTester.cs" />
     <Compile Include="Storage\when_finding_the_entity_storage_with_matching_policies.cs" />
     <Compile Include="Storage\when_finding_the_entity_storage_with_no_matching_policies.cs" />
-    <Compile Include="StructureMap\BootstrappingSmokeTests.cs" />
+    <Compile Include="StructureMap\InMemoryPersistenceRegistry_integration_tester.cs" />
     <Compile Include="when_updating_an_entity.cs" />
   </ItemGroup>
   <ItemGroup>

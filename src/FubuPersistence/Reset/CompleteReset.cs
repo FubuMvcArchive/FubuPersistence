@@ -8,14 +8,14 @@ namespace FubuPersistence.Reset
     public class CompleteReset : ICompleteReset
     {
         private readonly ILogger _logger;
-        private readonly IServiceLocator _services;
+        private readonly IInitialState _initialState;
         private readonly IPersistenceReset _persistence;
         private readonly IEnumerable<IServiceReset> _serviceResets;
 
-        public CompleteReset(ILogger logger, IServiceLocator services, IPersistenceReset persistence, IEnumerable<IServiceReset> serviceResets)
+        public CompleteReset(ILogger logger, IInitialState initialState, IPersistenceReset persistence, IEnumerable<IServiceReset> serviceResets)
         {
             _logger = logger;
-            _services = services;
+            _initialState = initialState;
             _persistence = persistence;
             _serviceResets = serviceResets;
         }
@@ -43,7 +43,7 @@ namespace FubuPersistence.Reset
             _persistence.ClearPersistedState();
 
             trace("Loading initial data");
-            _services.GetInstance<IInitialState>().Load();
+            _initialState.Load();
 
             _serviceResets.Each(x => {
                 
