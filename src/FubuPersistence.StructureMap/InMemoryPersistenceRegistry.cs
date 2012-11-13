@@ -8,14 +8,26 @@ using StructureMap.Configuration.DSL;
 
 namespace FubuPersistence.StructureMap
 {
-    public class InMemoryPersistenceRegistry : Registry
+    public class PersistenceRegistry : Registry
     {
-        public InMemoryPersistenceRegistry()
+        public PersistenceRegistry()
         {
             // This acts as "SetServiceIfNone"
             For<ISystemTime>().Add(SystemTime.Default());
             For<IInitialState>().Add<NulloInitialState>();
             For<ITenantContext>().Add<NulloTenantContext>();
+
+            // It's important that these are in this order
+            For<IEntityStoragePolicy>().Add<ByTenantStoragePolicy>();
+            For<IEntityStoragePolicy>().Add<SoftDeletedStoragePolicy>();
+        }
+    }
+
+    public class InMemoryPersistenceRegistry : Registry
+    {
+        public InMemoryPersistenceRegistry()
+        {
+            IncludeRegistry<PersistenceRegistry>();
 
             For<ITransaction>().Use<InMemoryTransaction>();
 
