@@ -19,6 +19,11 @@ namespace FubuPersistence.MultiTenancy
             if (_context.CurrentTenant == Guid.Empty) throw new InvalidOperationException();
         }
 
+        public ITenantContext Context
+        {
+            get { return _context; }
+        }
+
         public T Find(Guid id)
         {
             assertHasContext();

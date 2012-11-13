@@ -1,6 +1,7 @@
 ﻿using FubuCore.Dates;
 using FubuCore.Logging;
 using FubuPersistence.InMemory;
+using FubuPersistence.MultiTenancy;
 using FubuPersistence.Reset;
 using FubuPersistence.Storage;
 using StructureMap.Configuration.DSL;
@@ -14,6 +15,7 @@ namespace FubuPersistence.StructureMap
             // This acts as "SetServiceIfNone"
             For<ISystemTime>().Add(SystemTime.Default());
             For<IInitialState>().Add<NulloInitialState>();
+            For<ITenantContext>().Add<NulloTenantContext>();
 
             For<ITransaction>().Use<InMemoryTransaction>();
 
