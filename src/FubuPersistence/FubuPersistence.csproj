@@ -55,7 +55,11 @@
     <Compile Include="InMemory\InMemoryPersistor.cs" />
     <Compile Include="IPersistor.cs" />
     <Compile Include="ITransaction.cs" />
+    <Compile Include="MultiTenancy\ByTenantEntityStorage.cs" />
+    <Compile Include="MultiTenancy\ITenantContext.cs" />
     <Compile Include="MultiTenancy\ITenantedEntity.cs" />
+    <Compile Include="MultiTenancy\NulloTenantContext.cs" />
+    <Compile Include="MultiTenancy\SimpleTenantContext.cs" />
     <Compile Include="Reset\CompleteReset.cs" />
     <Compile Include="Reset\ICompleteReset.cs" />
     <Compile Include="Reset\IInitialState.cs" />

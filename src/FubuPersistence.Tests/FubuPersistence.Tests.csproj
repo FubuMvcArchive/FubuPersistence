@@ -67,6 +67,7 @@
     <Compile Include="EntityRepositoryTester.cs" />
     <Compile Include="FakeEntity.cs" />
     <Compile Include="InMemory\InMemoryPersistorTester.cs" />
+    <Compile Include="MultiTenancy\ByTenantEntityStorageTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reset\CompleteResetTester.cs" />
     <Compile Include="InMemory\InMemoryPersistentResetTester.cs" />

@@ -7,9 +7,6 @@ namespace FubuPersistence
     {
         public Guid Id { get; set; }
 
-        // TODO -- eliminate this
-        public Milestone Deleted { get; set; }
-
         public bool Equals(Entity other)
         {
             if (ReferenceEquals(null, other)) return false;

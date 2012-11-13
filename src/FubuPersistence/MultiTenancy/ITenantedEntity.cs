@@ -7,16 +7,8 @@ namespace FubuPersistence.MultiTenancy
         Guid TenantId { get; set; }
     }
 
-    public interface ITenantContext
+    public abstract class TenantedEntity : Entity, ITenantedEntity
     {
-        Guid CurrentTenant { get; }
-    }
-
-    public class NulloTenantContext : ITenantContext
-    {
-        public Guid CurrentTenant
-        {
-            get { return Guid.Empty; }
-        }
+        public Guid TenantId { get; set; }
     }
 }
