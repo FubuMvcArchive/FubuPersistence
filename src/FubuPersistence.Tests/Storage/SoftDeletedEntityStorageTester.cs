@@ -2,7 +2,6 @@
 using FubuCore.Dates;
 using FubuPersistence.InMemory;
 using FubuPersistence.Storage;
-using FubuPersistence.Tests.InMemory;
 using FubuTestingSupport;
 using NUnit.Framework;
 
@@ -19,18 +18,7 @@ namespace FubuPersistence.Tests.Storage
 
 
             thePersistor = new InMemoryPersistor();
-            Services.Inject<IEntityStorage<SoftDeletedEntity>>(new GlobalEntityStorage<SoftDeletedEntity>(thePersistor));
-        }
-
-        [Test]
-        public void when_deleting_an_entity_mark_the_entity_as_deleted()
-        {
-            var @case = new SoftDeletedEntity();
-            @case.Deleted.ShouldBeNull();
-
-            ClassUnderTest.Remove(@case);
-
-            @case.Deleted.ShouldEqual(new Milestone(LocalSystemTime));
+            Services.Inject<IEntityStorage<SoftDeletedEntity>>(new EntityStorage<SoftDeletedEntity>(thePersistor));
         }
 
 
@@ -61,9 +49,9 @@ namespace FubuPersistence.Tests.Storage
         public void soft_deleted_entities_are_not_available_from_All()
         {
             var c1 = new SoftDeletedEntity();
-            var c2 = new SoftDeletedEntity{Deleted = new Milestone(DateTime.Now)};
+            var c2 = new SoftDeletedEntity {Deleted = new Milestone(DateTime.Now)};
             var c3 = new SoftDeletedEntity();
-            var c4 = new SoftDeletedEntity { Deleted = new Milestone(DateTime.Now) };
+            var c4 = new SoftDeletedEntity {Deleted = new Milestone(DateTime.Now)};
 
             thePersistor.Persist(c1);
             thePersistor.Persist(c2);
@@ -75,13 +63,27 @@ namespace FubuPersistence.Tests.Storage
 
             ClassUnderTest.All().ShouldHaveTheSameElementsAs(c1, c3);
         }
-    }
 
+        [Test]
+        public void when_deleting_an_entity_mark_the_entity_as_deleted()
+        {
+            var @case = new SoftDeletedEntity();
+            @case.Deleted.ShouldBeNull();
+
+            ClassUnderTest.Remove(@case);
+
+            @case.Deleted.ShouldEqual(new Milestone(LocalSystemTime));
+        }
+    }
 
 
     public class SoftDeletedEntity : ISoftDeletedEntity
     {
+        #region ISoftDeletedEntity Members
+
         public Guid Id { get; set; }
         public Milestone Deleted { get; set; }
+
+        #endregion
     }
 }

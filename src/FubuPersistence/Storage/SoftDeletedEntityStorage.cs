@@ -16,6 +16,11 @@ namespace FubuPersistence.Storage
             _systemTime = systemTime;
         }
 
+        public IEntityStorage<T> Inner
+        {
+            get { return _inner; }
+        }
+
         public T Find(Guid id)
         {
             return _inner.Find(id);

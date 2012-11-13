@@ -4,12 +4,11 @@ using System.Linq.Expressions;
 
 namespace FubuPersistence.Storage
 {
-    // TODO -- rename to simple
-    public class GlobalEntityStorage<T> : IEntityStorage<T> where T : class, IEntity
+    public class EntityStorage<T> : IEntityStorage<T> where T : class, IEntity
     {
         private readonly IPersistor _persistor;
 
-        public GlobalEntityStorage(IPersistor persistor)
+        public EntityStorage(IPersistor persistor)
         {
             _persistor = persistor;
         }

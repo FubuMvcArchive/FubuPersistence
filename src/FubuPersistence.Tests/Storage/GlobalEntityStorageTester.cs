@@ -8,7 +8,7 @@ using Rhino.Mocks;
 namespace FubuPersistence.Tests.Storage
 {
     [TestFixture]
-    public class GlobalEntityStorageTester : InteractionContext<GlobalEntityStorage<User>>
+    public class GlobalEntityStorageTester : InteractionContext<EntityStorage<User>>
     {
         [Test]
         public void find_delegates()

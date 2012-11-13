@@ -16,7 +16,7 @@ namespace FubuPersistence.Tests.Storage
         [Test]
         public void uses_the_global_entity_storage_by_default()
         {
-            ClassUnderTest.StorageFor<User>().ShouldBeOfType<GlobalEntityStorage<User>>();
+            ClassUnderTest.StorageFor<User>().ShouldBeOfType<EntityStorage<User>>();
         }
     }
 }

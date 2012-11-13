@@ -72,7 +72,7 @@
     <Compile Include="InMemory\InMemoryPersistentResetTester.cs" />
     <Compile Include="Storage\GlobalEntityStorageTester.cs" />
     <Compile Include="Storage\SoftDeletedEntityStorageTester.cs" />
-    <Compile Include="Storage\when_finding_the_entity_storage_with_matching_policies.cs" />
+    <Compile Include="Storage\SoftDeletedStoragePolicyTester.cs" />
     <Compile Include="Storage\when_finding_the_entity_storage_with_no_matching_policies.cs" />
     <Compile Include="StructureMap\InMemoryPersistenceRegistry_integration_tester.cs" />
     <Compile Include="when_updating_an_entity.cs" />

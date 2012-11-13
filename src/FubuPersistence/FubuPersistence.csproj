@@ -55,18 +55,19 @@
     <Compile Include="InMemory\InMemoryPersistor.cs" />
     <Compile Include="IPersistor.cs" />
     <Compile Include="ITransaction.cs" />
+    <Compile Include="MultiTenancy\ITenantedEntity.cs" />
     <Compile Include="Reset\CompleteReset.cs" />
     <Compile Include="Reset\ICompleteReset.cs" />
     <Compile Include="Reset\IInitialState.cs" />
     <Compile Include="Reset\IPersistenceReset.cs" />
     <Compile Include="Reset\IServiceReset.cs" />
     <Compile Include="Reset\ResetMessage.cs" />
-    <Compile Include="Storage\GlobalEntityStorage.cs" />
-    <Compile Include="Storage\GlobalEntityStoragePolicy.cs" />
+    <Compile Include="Storage\EntityStorage.cs" />
     <Compile Include="Storage\IEntityStorage.cs" />
     <Compile Include="Storage\IEntityStoragePolicy.cs" />
     <Compile Include="Storage\IStorageFactory.cs" />
     <Compile Include="Storage\SoftDeletedEntityStorage.cs" />
+    <Compile Include="Storage\SoftDeletedStoragePolicy.cs" />
     <Compile Include="Storage\StorageFactory.cs" />
   </ItemGroup>
   <ItemGroup>
