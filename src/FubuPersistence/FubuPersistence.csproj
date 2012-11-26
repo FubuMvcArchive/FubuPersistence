@@ -34,10 +34,23 @@
     <Reference Include="FubuCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FubuCore.1.0.0.216\lib\FubuCore.dll</HintPath>
     </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\packages\RavenDB.Database.1.2.2142-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Embedded">
+      <HintPath>..\packages\RavenDB.Embedded.1.2.2142-Unstable\lib\net40\Raven.Client.Embedded.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\packages\RavenDB.Client.1.2.2142-Unstable\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Database">
+      <HintPath>..\packages\RavenDB.Database.1.2.2142-Unstable\lib\net40\Raven.Database.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -68,6 +81,14 @@
     <Compile Include="MultiTenancy\ITenantedEntity.cs" />
     <Compile Include="MultiTenancy\NulloTenantContext.cs" />
     <Compile Include="MultiTenancy\SimpleTenantContext.cs" />
+    <Compile Include="RavenDb\IDocumentStoreBuilder.cs" />
+    <Compile Include="RavenDb\IDocumentStoreConfigurationAction.cs" />
+    <Compile Include="RavenDb\ISessionBoundary.cs" />
+    <Compile Include="RavenDb\RavenDbRegistry.cs" />
+    <Compile Include="RavenDb\RavenDbSettings.cs" />
+    <Compile Include="RavenDb\RavenPersistor.cs" />
+    <Compile Include="RavenDb\RavenTransaction.cs" />
+    <Compile Include="RavenDb\SessionBoundary.cs" />
     <Compile Include="Reset\CompleteReset.cs" />
     <Compile Include="Reset\ICompleteReset.cs" />
     <Compile Include="Reset\IInitialState.cs" />
@@ -84,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="RavenDb\packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

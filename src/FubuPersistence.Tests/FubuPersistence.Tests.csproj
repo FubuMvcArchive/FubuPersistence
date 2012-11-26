@@ -97,10 +97,6 @@
     <Compile Include="when_updating_an_entity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FubuPersistence.RavenDb\FubuPersistence.RavenDb.csproj">
-      <Project>{46E6DA49-B128-4BC4-B388-EB6B16C8BCD9}</Project>
-      <Name>FubuPersistence.RavenDb</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FubuPersistence\FubuPersistence.csproj">
       <Project>{EA5788C7-1191-4474-B59F-CDC2767A0E3A}</Project>
       <Name>FubuPersistence</Name>
