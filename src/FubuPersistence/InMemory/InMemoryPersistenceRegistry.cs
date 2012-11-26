@@ -1,12 +1,11 @@
 ﻿using FubuCore.Dates;
 using FubuCore.Logging;
-using FubuPersistence.InMemory;
 using FubuPersistence.MultiTenancy;
 using FubuPersistence.Reset;
 using FubuPersistence.Storage;
 using StructureMap.Configuration.DSL;
 
-namespace FubuPersistence.StructureMap
+namespace FubuPersistence.InMemory
 {
     public class PersistenceRegistry : Registry
     {

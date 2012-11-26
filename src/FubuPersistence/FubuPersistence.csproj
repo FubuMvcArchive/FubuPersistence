@@ -31,8 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FubuCore">
-      <HintPath>..\packages\FubuCore.0.9.9.204\lib\FubuCore.dll</HintPath>
+    <Reference Include="FubuCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuCore.1.0.0.216\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,8 +54,12 @@
     <Compile Include="IEntity.cs" />
     <Compile Include="IEntityRepository.cs" />
     <Compile Include="IEntityRepositoryBuilder.cs" />
+    <Compile Include="ContainerExtensions.cs" />
+    <Compile Include="InMemory\DelegatingTransaction.cs" />
+    <Compile Include="InMemory\InMemoryPersistenceRegistry.cs" />
     <Compile Include="InMemory\InMemoryPersistenceReset.cs" />
     <Compile Include="InMemory\InMemoryPersistor.cs" />
+    <Compile Include="InMemory\InMemoryTransaction.cs" />
     <Compile Include="IPersistor.cs" />
     <Compile Include="ITransaction.cs" />
     <Compile Include="MultiTenancy\ByTenantEntityStorage.cs" />

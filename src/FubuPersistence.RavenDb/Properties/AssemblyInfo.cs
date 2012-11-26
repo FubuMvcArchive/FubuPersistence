@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FubuPersistence.StructureMap")]
+[assembly: AssemblyTitle("FubuPersistence.RavenDb")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("FubuPersistence.StructureMap")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
+[assembly: AssemblyCompany("Extend Health Inc")]
+[assembly: AssemblyProduct("FubuPersistence.RavenDb")]
+[assembly: AssemblyCopyright("Copyright © Extend Health Inc 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fdf1fb58-f3a7-45d6-8268-5bc5eea37fef")]
+[assembly: Guid("be26854c-3107-4761-bc26-5de8c3ffe5b2")]
 
 // Version information for an assembly consists of the following four values:
 //

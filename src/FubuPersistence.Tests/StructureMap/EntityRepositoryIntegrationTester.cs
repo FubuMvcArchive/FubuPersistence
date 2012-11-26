@@ -1,7 +1,7 @@
 ﻿using System;
 using FubuCore.Dates;
+using FubuPersistence.InMemory;
 using FubuPersistence.MultiTenancy;
-using FubuPersistence.StructureMap;
 using NUnit.Framework;
 using StructureMap;
 using FubuTestingSupport;

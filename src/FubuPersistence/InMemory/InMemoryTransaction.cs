@@ -3,7 +3,7 @@ using FubuCore.Binding;
 using StructureMap;
 using StructureMap.Pipeline;
 
-namespace FubuPersistence.StructureMap
+namespace FubuPersistence.InMemory
 {
     public class InMemoryTransaction : ITransaction
     {

@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuPersistence", "FubuPers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuPersistence.Tests", "FubuPersistence.Tests\FubuPersistence.Tests.csproj", "{E80DC8C6-3BC3-4F00-9939-12BA2B34A4EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuPersistence.StructureMap", "FubuPersistence.StructureMap\FubuPersistence.StructureMap.csproj", "{C608A15B-E80F-40DE-B54B-A32315DF1955}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuPersistence.RavenDb", "FubuPersistence.RavenDb\FubuPersistence.RavenDb.csproj", "{46E6DA49-B128-4BC4-B388-EB6B16C8BCD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +20,10 @@ Global
 		{E80DC8C6-3BC3-4F00-9939-12BA2B34A4EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E80DC8C6-3BC3-4F00-9939-12BA2B34A4EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E80DC8C6-3BC3-4F00-9939-12BA2B34A4EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C608A15B-E80F-40DE-B54B-A32315DF1955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C608A15B-E80F-40DE-B54B-A32315DF1955}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C608A15B-E80F-40DE-B54B-A32315DF1955}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C608A15B-E80F-40DE-B54B-A32315DF1955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46E6DA49-B128-4BC4-B388-EB6B16C8BCD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E6DA49-B128-4BC4-B388-EB6B16C8BCD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E6DA49-B128-4BC4-B388-EB6B16C8BCD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E6DA49-B128-4BC4-B388-EB6B16C8BCD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
