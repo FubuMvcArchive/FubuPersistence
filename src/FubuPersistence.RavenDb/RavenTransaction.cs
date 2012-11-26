@@ -1,7 +1,6 @@
 using System;
 using FubuCore.Binding;
 using StructureMap;
-using FubuPersistence.InMemory;
 
 namespace FubuPersistence.RavenDb
 {

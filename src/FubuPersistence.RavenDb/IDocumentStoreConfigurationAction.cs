@@ -10,7 +10,6 @@ namespace FubuPersistence.RavenDb
         void Configure(IDocumentStore documentStore);
     }
 
-    // You know the rule about parallel hierarchies? This sucks
     public class CustomizeRavenJsonSerializer : IDocumentStoreConfigurationAction
     {
         private readonly IEnumerable<JsonConverter> _converters;

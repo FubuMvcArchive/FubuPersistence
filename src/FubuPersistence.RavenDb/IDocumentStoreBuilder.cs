@@ -26,10 +26,6 @@ namespace FubuPersistence.RavenDb
 
         public IDocumentStore Build()
         {
-            // if in memory, build that
-            // if connection string is set, use that
-            // if 
-
             var documentStore = _settings.Create();
             documentStore.Initialize();
 
