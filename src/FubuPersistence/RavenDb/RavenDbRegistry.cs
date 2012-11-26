@@ -1,4 +1,5 @@
 using FubuPersistence.InMemory;
+using FubuPersistence.Reset;
 using Raven.Client;
 using StructureMap.Configuration.DSL;
 
@@ -28,6 +29,8 @@ namespace FubuPersistence.RavenDb
             For<ITransaction>().Use<RavenTransaction>();
 
             For<IUnitOfWork>().Use<RavenUnitOfWork>();
+
+            For<IPersistenceReset>().Use<RavenPersistenceReset>();
         }
     }
 }

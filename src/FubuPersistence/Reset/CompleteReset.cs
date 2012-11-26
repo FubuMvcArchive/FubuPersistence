@@ -42,6 +42,7 @@ namespace FubuPersistence.Reset
             trace("Clearing persisted state");
             _persistence.ClearPersistedState();
 
+            // Think it's pretty likely that this changes
             trace("Loading initial data");
             _initialState.Load();
 
