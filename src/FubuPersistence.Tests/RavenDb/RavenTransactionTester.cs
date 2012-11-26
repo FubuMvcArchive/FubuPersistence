@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using FubuPersistence.RavenDb;
+using FubuPersistence.Tests.MultiTenancy;
 using FubuTestingSupport;
 using NUnit.Framework;
 using StructureMap;
@@ -72,6 +74,44 @@ namespace FubuPersistence.Tests.RavenDb
             transaction.WithRepository(repo => {
                 repo.All<OtherEntity>().ShouldContain(entity);
                 wasCalled = true;
+            });
+
+            wasCalled.ShouldBeTrue();
+        }
+
+        [Test]
+        public void multi_tenancy_test_to_excercise_the_service_arguments()
+        {
+            var tenantA = Guid.NewGuid();
+            var tenantB = Guid.NewGuid();
+
+
+            var trackedA1 = new TrackedEntity();
+            var trackedA2 = new TrackedEntity();
+            var trackedB1 = new TrackedEntity();
+            var trackedB2 = new TrackedEntity();
+            var trackedB3 = new TrackedEntity();
+        
+            transaction.WithRepository(tenantA, repo => {
+                repo.Update(trackedA1);
+                repo.Update(trackedA2);
+            });
+
+            transaction.WithRepository(tenantB, repo => {
+                repo.Update(trackedB1);
+                repo.Update(trackedB2);
+                repo.Update(trackedB3);
+            });
+
+            transaction.WithRepository(tenantA, repo => {
+                repo.All<TrackedEntity>().ShouldHaveTheSameElementsAs(trackedA1, trackedA2);
+            });
+
+            bool wasCalled = false;
+            transaction.WithRepository(tenantB, repo =>
+            {
+                wasCalled = true;
+                repo.All<TrackedEntity>().ShouldHaveTheSameElementsAs(trackedB1, trackedB2, trackedB3);
             });
 
             wasCalled.ShouldBeTrue();
