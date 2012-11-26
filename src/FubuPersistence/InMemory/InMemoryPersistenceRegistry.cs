@@ -19,6 +19,14 @@ namespace FubuPersistence.InMemory
             // It's important that these are in this order
             For<IEntityStoragePolicy>().Add<ByTenantStoragePolicy>();
             For<IEntityStoragePolicy>().Add<SoftDeletedStoragePolicy>();
+
+            For<IEntityRepository>().Use<EntityRepository>();
+            For<IStorageFactory>().Use<StorageFactory>();
+
+
+
+            For<ICompleteReset>().Use<CompleteReset>();
+            For<ILogger>().Use<Logger>();
         }
     }
 
@@ -29,17 +37,11 @@ namespace FubuPersistence.InMemory
             IncludeRegistry<PersistenceRegistry>();
 
             For<ITransaction>().Use<InMemoryTransaction>();
-
-            For<IEntityRepository>().Use<EntityRepository>();
-            For<IStorageFactory>().Use<StorageFactory>();
-
             ForSingletonOf<IPersistor>().Use<InMemoryPersistor>();
 
             For<IPersistenceReset>().Use<InMemoryPersistenceReset>();
 
-            For<ICompleteReset>().Use<CompleteReset>();
 
-            For<ILogger>().Use<Logger>();
 
             
         }

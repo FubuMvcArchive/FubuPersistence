@@ -1,3 +1,4 @@
+using FubuPersistence.InMemory;
 using Raven.Client;
 using StructureMap.Configuration.DSL;
 
@@ -7,6 +8,8 @@ namespace FubuPersistence.RavenDb
     {
         public RavenDbRegistry()
         {
+            IncludeRegistry<PersistenceRegistry>();
+
             Scan(x =>
             {
                 x.AssemblyContainingType<IDocumentStoreConfigurationAction>();

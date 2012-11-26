@@ -14,7 +14,7 @@ namespace FubuPersistence.Tests.RavenDb
     [TestFixture]
     public class RavenPersistorTester
     {
-        private Container container = new Container(new RavenDbRegistry());
+        private Container container;
         private RavenPersistor persistor;
         private IDocumentStore documents;
         private ISessionBoundary boundary;
