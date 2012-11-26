@@ -13,7 +13,8 @@ namespace FubuPersistence.RavenDb
                 x.AddAllTypesOf<IDocumentStoreConfigurationAction>();
             });
 
-            ForSingletonOf<IDocumentStore>().Use(c => c.GetInstance<IDocumentStoreBuilder>().Build());
+            
+            ForSingletonOf<IDocumentStore>().Use(c => c.GetInstance<DocumentStoreBuilder>().Build());
 
             For<IDocumentSession>().Use(c => c.GetInstance<ISessionBoundary>().Session());
 
