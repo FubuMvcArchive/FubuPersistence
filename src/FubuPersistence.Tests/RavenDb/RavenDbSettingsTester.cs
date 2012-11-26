@@ -43,5 +43,26 @@ namespace FubuPersistence.Tests.RavenDb
              .ShouldBeOfType<DocumentStore>()
              .Url.ShouldEqual("http://somewhere:8080");
         }
+
+        [Test]
+        public void is_empty()
+        {
+            new RavenDbSettings().IsEmpty().ShouldBeTrue();
+
+            new RavenDbSettings
+            {
+                RunInMemory = true
+            }.IsEmpty().ShouldBeFalse();
+
+            new RavenDbSettings
+            {
+                DataDirectory = "data"
+            }.IsEmpty().ShouldBeFalse();
+
+            new RavenDbSettings
+            {
+                Url = "http://server.com"
+            }.IsEmpty().ShouldBeFalse();
+        }
     }
 }

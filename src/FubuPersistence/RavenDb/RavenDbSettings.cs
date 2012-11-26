@@ -25,6 +25,11 @@ namespace FubuPersistence.RavenDb
         public string DataDirectory { get; set; }
         public string Url { get; set; }
 
+        public bool IsEmpty()
+        {
+            return !RunInMemory && DataDirectory.IsEmpty() && Url.IsEmpty();
+        }
+
         public IDocumentStore Create()
         {
             if (Url.IsNotEmpty())
