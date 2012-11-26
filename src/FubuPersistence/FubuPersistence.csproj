@@ -73,8 +73,10 @@
     <Compile Include="InMemory\InMemoryPersistenceReset.cs" />
     <Compile Include="InMemory\InMemoryPersistor.cs" />
     <Compile Include="InMemory\InMemoryTransaction.cs" />
+    <Compile Include="InMemory\InMemoryUnitOfWork.cs" />
     <Compile Include="IPersistor.cs" />
     <Compile Include="ITransaction.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="MultiTenancy\ByTenantEntityStorage.cs" />
     <Compile Include="MultiTenancy\ByTenantStoragePolicy.cs" />
     <Compile Include="MultiTenancy\ITenantContext.cs" />
@@ -86,8 +88,10 @@
     <Compile Include="RavenDb\ISessionBoundary.cs" />
     <Compile Include="RavenDb\RavenDbRegistry.cs" />
     <Compile Include="RavenDb\RavenDbSettings.cs" />
+    <Compile Include="RavenDb\RavenPersistenceReset.cs" />
     <Compile Include="RavenDb\RavenPersistor.cs" />
     <Compile Include="RavenDb\RavenTransaction.cs" />
+    <Compile Include="RavenDb\RavenUnitOfWork.cs" />
     <Compile Include="RavenDb\SessionBoundary.cs" />
     <Compile Include="Reset\CompleteReset.cs" />
     <Compile Include="Reset\ICompleteReset.cs" />

@@ -87,6 +87,7 @@
     <Compile Include="RavenDb\RavenDbSettingsTester.cs" />
     <Compile Include="RavenDb\RavenPersistorTester.cs" />
     <Compile Include="RavenDb\RavenTransactionTester.cs" />
+    <Compile Include="RavenDb\RavenUnitOfWorkTester.cs" />
     <Compile Include="Reset\CompleteResetTester.cs" />
     <Compile Include="InMemory\InMemoryPersistentResetTester.cs" />
     <Compile Include="Storage\GlobalEntityStorageTester.cs" />

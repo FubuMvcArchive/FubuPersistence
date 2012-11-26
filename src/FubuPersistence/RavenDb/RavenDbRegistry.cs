@@ -26,6 +26,8 @@ namespace FubuPersistence.RavenDb
             For<IPersistor>().Use<RavenPersistor>();
 
             For<ITransaction>().Use<RavenTransaction>();
+
+            For<IUnitOfWork>().Use<RavenUnitOfWork>();
         }
     }
 }

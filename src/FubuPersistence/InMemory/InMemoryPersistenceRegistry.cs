@@ -41,9 +41,9 @@ namespace FubuPersistence.InMemory
 
             For<IPersistenceReset>().Use<InMemoryPersistenceReset>();
 
+            For<IUnitOfWork>().Use<InMemoryUnitOfWork>();
 
 
-            
         }
     }
 }

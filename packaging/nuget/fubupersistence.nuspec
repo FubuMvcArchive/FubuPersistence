@@ -13,9 +13,14 @@
     <tags>fubu persistence</tags>
     <dependencies>
       <dependency id="FubuCore" version="0.9.9.180" />
+      <dependency id="structuremap" version="2.6.3" />
+      <dependency id="RavenDB.Client" version="1.2.2142-Unstable" />
+      <dependency id="RavenDB.Database" version="1.2.2142-Unstable" />
+      <dependency id="RavenDB.Embedded" version="1.2.2142-Unstable" />
     </dependencies>
   </metadata>
   <files>
     <file src="..\..\src\FubuPersistence\bin\release\FubuPersistence.*" target="lib\net40" />
   </files>
 </package>
+
