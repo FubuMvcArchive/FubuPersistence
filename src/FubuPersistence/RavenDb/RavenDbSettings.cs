@@ -6,14 +6,6 @@ using Raven.Client.Embedded;
 
 namespace FubuPersistence.RavenDb
 {
-    /*
-     *  TODO
-     *  DataDirectory, if it's null, do it by finding the /ravendb folder parallel to the
-     *  application
-     * 
-
-     */
-
     public class RavenDbSettings
     {
         public RavenDbSettings()
