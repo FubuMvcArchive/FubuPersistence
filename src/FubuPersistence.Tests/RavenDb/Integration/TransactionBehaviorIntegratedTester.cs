@@ -47,7 +47,7 @@ namespace FubuPersistence.Tests.RavenDb.Integration
     {
         public NamedEntityRegistry()
         {
-            
+            Services(x => x.ReplaceService(new RavenDbSettings { RunInMemory = true}));
         }
     }
 

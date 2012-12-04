@@ -18,7 +18,7 @@ namespace FubuMVC.RavenDb
                 DataDirectory = defaultDataDirectory
             };
 
-            registry.Services(x => x.AddService(defaultSettings));
+            registry.Services(x => x.SetServiceIfNone(defaultSettings));
         }
     }
 
