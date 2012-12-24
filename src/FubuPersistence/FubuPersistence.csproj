@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FubuCore">
-      <HintPath>..\packages\FubuCore.1.0.0.217\lib\FubuCore.dll</HintPath>
+      <HintPath>..\packages\FubuCore.1.0.0.225\lib\FubuCore.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\packages\RavenDB.Database.1.2.2142-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
