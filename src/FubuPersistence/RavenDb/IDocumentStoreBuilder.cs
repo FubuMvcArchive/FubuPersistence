@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Raven.Client;
-using Raven.Client.Document;
-using Raven.Client.Embedded;
-using FubuCore;
 
 namespace FubuPersistence.RavenDb
 {
@@ -17,8 +13,7 @@ namespace FubuPersistence.RavenDb
         private readonly IEnumerable<IDocumentStoreConfigurationAction> _configurations;
         private readonly RavenDbSettings _settings;
 
-        public DocumentStoreBuilder(RavenDbSettings settings,
-                                    IEnumerable<IDocumentStoreConfigurationAction> configurations)
+        public DocumentStoreBuilder(RavenDbSettings settings, IEnumerable<IDocumentStoreConfigurationAction> configurations)
         {
             _settings = settings;
             _configurations = configurations;
@@ -27,12 +22,12 @@ namespace FubuPersistence.RavenDb
         public IDocumentStore Build()
         {
             var documentStore = _settings.Create();
-            documentStore.Initialize();
 
             _configurations.Each(x => x.Configure(documentStore));
 
+            documentStore.Initialize();
+
             return documentStore;
         }
-
     }
 }
