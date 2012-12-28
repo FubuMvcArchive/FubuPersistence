@@ -1,0 +1,23 @@
+﻿<viewdata model="FubuPersistenceHarness.ShowUsersViewModel" />
+<use namespace="FubuPersistenceHarness.Domain" />
+<use namespace="FubuPersistenceHarness" />
+
+<div>
+  <h1>FubuPersistence Demonstration</h1>
+  <br></br>
+  <form method="POST" action="!{this.Urls.UrlFor[[ClearInputModel]]()}">
+    <input type="submit" value="Clear Users" />
+  </form>
+  <br>
+  <form method="POST" action="!{this.Urls.UrlFor[[NewUserInputModel]]()}">
+    <input name="FirstName" />
+    <input name="LastName" />
+    <input type="submit" value="Add User" />
+  </form>
+  <br></br>
+  <ul>
+    <li each="var user in Model.Users">
+      ${user.FirstName} ${user.LastName}
+    </li>
+  </ul>
+</div>

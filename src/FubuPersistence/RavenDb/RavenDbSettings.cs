@@ -8,14 +8,10 @@ namespace FubuPersistence.RavenDb
 {
     public class RavenDbSettings
     {
-        public RavenDbSettings()
-        {
-            RunInMemory = false;
-        }
-
-        public bool RunInMemory { get; set; }
         public string DataDirectory { get; set; }
+        public bool RunInMemory { get; set; }
         public string Url { get; set; }
+        public bool UseEmbeddedHttpServer { get; set; }
 
         public bool IsEmpty()
         {
@@ -26,7 +22,7 @@ namespace FubuPersistence.RavenDb
         {
             if (Url.IsNotEmpty())
             {
-                return new DocumentStore()
+                return new DocumentStore
                 {
                     Url = Url
                 };
@@ -36,7 +32,8 @@ namespace FubuPersistence.RavenDb
             {
                 return new EmbeddableDocumentStore
                 {
-                    DataDirectory = DataDirectory
+                    DataDirectory = DataDirectory,
+                    UseEmbeddedHttpServer = UseEmbeddedHttpServer
                 };
             }
 
@@ -44,7 +41,8 @@ namespace FubuPersistence.RavenDb
             {
                 return new EmbeddableDocumentStore
                 {
-                    RunInMemory = true
+                    RunInMemory = true,
+                    UseEmbeddedHttpServer = UseEmbeddedHttpServer
                 };
             }
 

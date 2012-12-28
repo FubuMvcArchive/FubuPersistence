@@ -25,3 +25,6 @@ src/*/repositories.config
 results
 *.DotSettings.user
 bottles.cmd
+fubu-content/
+.links
+data/
