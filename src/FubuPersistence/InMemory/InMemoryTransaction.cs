@@ -5,7 +5,7 @@ using StructureMap.Pipeline;
 
 namespace FubuPersistence.InMemory
 {
-    public class InMemoryTransaction : ITransaction
+    public class InMemoryTransaction : TransactionBase
     {
         private readonly IContainer _container;
 
@@ -14,7 +14,7 @@ namespace FubuPersistence.InMemory
             _container = container;
         }
 
-        public void Execute<T>(ServiceArguments arguments, Action<T> action) where T : class
+        public override void Execute<T>(ServiceArguments arguments, Action<T> action) 
         {
             using (var nested = _container.GetNestedContainer())
             {
@@ -25,12 +25,5 @@ namespace FubuPersistence.InMemory
             }
         }
 
-        public void Execute<T>(Action<T> action) where T : class
-        {
-            using (var nested = _container.GetNestedContainer())
-            {
-                action(nested.GetInstance<T>());
-            }
-        }
     }
 }

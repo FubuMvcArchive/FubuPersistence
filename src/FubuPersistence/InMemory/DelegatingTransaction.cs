@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace FubuPersistence.InMemory
 {
-    public class DelegatingTransaction : ITransaction
+    public class DelegatingTransaction : TransactionBase
     {
         private readonly IContainer _container;
 
@@ -13,15 +13,12 @@ namespace FubuPersistence.InMemory
             _container = container;
         }
 
-        public void Execute<T>(ServiceArguments arguments, Action<T> action) where T : class
+        public override void Execute<T>(ServiceArguments arguments, Action<T> action)
         {
             _container.Apply(arguments);
             Execute(action);
         }
 
-        public void Execute<T>(Action<T> action) where T : class
-        {
-            action(_container.GetInstance<T>());
-        }
+
     }
 }

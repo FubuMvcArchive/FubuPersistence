@@ -41,13 +41,13 @@
       <HintPath>..\packages\FubuLocalization.0.9.5.124\lib\FubuLocalization.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core">
-      <HintPath>..\packages\FubuMVC.Core.1.0.0.1402\lib\net40\FubuMVC.Core.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Core.1.0.1.1407\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.SelfHost">
-      <HintPath>..\packages\FubuMVC.SelfHost.1.0.0.1402\lib\net40\FubuMVC.SelfHost.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.SelfHost.1.0.1.1407\lib\net40\FubuMVC.SelfHost.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.StructureMap">
-      <HintPath>..\packages\FubuMVC.StructureMap.1.0.0.1402\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.StructureMap.1.0.1.1407\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.TestingHarness">
       <HintPath>..\packages\FubuMVC.TestingHarness.0.9.9.1317\lib\net40\FubuMVC.TestingHarness.dll</HintPath>

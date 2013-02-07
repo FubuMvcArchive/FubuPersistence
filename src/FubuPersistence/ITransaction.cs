@@ -9,6 +9,22 @@ namespace FubuPersistence
         void Execute<T>(ServiceArguments arguments, Action<T> action) where T : class;
 
         void Execute<T>(Action<T> action) where T : class;
+
+        void Execute<T>(Guid tenantId, Action<T> action) where T : class;
+    }
+
+    public abstract class TransactionBase : ITransaction
+    {
+        public abstract void Execute<T>(ServiceArguments arguments, Action<T> action) where T : class;
+        public void Execute<T>(Action<T> action) where T : class
+        {
+            Execute(new ServiceArguments(), action);
+        }
+
+        public void Execute<T>(Guid tenantId, Action<T> action) where T : class
+        {
+            Execute(SimpleTenantContext.ArgumentsForTenant(tenantId), action);
+        }
     }
 
     public static class TransactionExtensions

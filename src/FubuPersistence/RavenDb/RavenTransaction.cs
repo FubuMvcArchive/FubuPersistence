@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace FubuPersistence.RavenDb
 {
-    public class RavenTransaction : ITransaction
+    public class RavenTransaction : TransactionBase
     {
         private readonly IContainer _container;
 
@@ -13,7 +13,7 @@ namespace FubuPersistence.RavenDb
             _container = container;
         }
 
-        public void Execute<T>(ServiceArguments arguments, Action<T> action) where T : class
+        public override void Execute<T>(ServiceArguments arguments, Action<T> action)
         {
             using (IContainer nested = _container.GetNestedContainer())
             {
@@ -24,11 +24,6 @@ namespace FubuPersistence.RavenDb
 
                 nested.GetInstance<ISessionBoundary>().SaveChanges();
             }
-        }
-
-        public void Execute<T>(Action<T> action) where T : class
-        {
-            Execute(new ServiceArguments(), action);
         }
     }
 }
