@@ -16,7 +16,7 @@ namespace FubuPersistence.InMemory
         public override void Execute<T>(ServiceArguments arguments, Action<T> action)
         {
             _container.Apply(arguments);
-            Execute(action);
+            action(_container.GetInstance<T>());
         }
 
 

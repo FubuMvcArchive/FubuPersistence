@@ -16,6 +16,7 @@ namespace FubuPersistence
     public abstract class TransactionBase : ITransaction
     {
         public abstract void Execute<T>(ServiceArguments arguments, Action<T> action) where T : class;
+        
         public void Execute<T>(Action<T> action) where T : class
         {
             Execute(new ServiceArguments(), action);
@@ -36,8 +37,7 @@ namespace FubuPersistence
 
         public static void WithRepository(this ITransaction transaction, Guid tenantId, Action<IEntityRepository> action)
         {
-            var arguments = new ServiceArguments().With<ITenantContext>(new SimpleTenantContext {CurrentTenant = tenantId});
-            transaction.Execute(arguments, action);
+            transaction.Execute(tenantId, action); 
         }
     }
 }
