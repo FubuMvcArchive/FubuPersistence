@@ -19,6 +19,15 @@ namespace FubuPersistence.Tests.RavenDb
         }
 
         [Test]
+        public void in_memory_is_wait_for_it_in_memory()
+        {
+            var settings = RavenDbSettings.InMemory();
+
+            var store = settings.Create();
+            store.ShouldBeOfType<EmbeddableDocumentStore>().RunInMemory.ShouldBeTrue();
+        }
+
+        [Test]
         public void build_in_memory()
         {
             var store = createStore<EmbeddableDocumentStore>(x => x.RunInMemory = true);

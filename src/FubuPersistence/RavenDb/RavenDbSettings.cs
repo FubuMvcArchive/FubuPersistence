@@ -14,6 +14,16 @@ namespace FubuPersistence.RavenDb
         public string Url { get; set; }
         public bool UseEmbeddedHttpServer { get; set; }
 
+        public static RavenDbSettings InMemory()
+        {
+            return new RavenDbSettings
+            {
+                ConnectionString = null,
+                DataDirectory = null, 
+                RunInMemory = true
+            };
+        }
+
         [ConnectionString]
         public string ConnectionString { get; set; }
 
