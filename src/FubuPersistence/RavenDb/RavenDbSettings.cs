@@ -34,6 +34,12 @@ namespace FubuPersistence.RavenDb
 
         public IDocumentStore Create()
         {
+            if (IsEmpty())
+            {
+                var defaultDataDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.ParentDirectory().AppendPath("data");
+                return new RavenDbSettings {DataDirectory = defaultDataDirectory}.Create();
+            }
+
             if (Url.IsNotEmpty())
             {
                 var store = new DocumentStore

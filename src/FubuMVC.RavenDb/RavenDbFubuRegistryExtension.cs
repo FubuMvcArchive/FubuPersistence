@@ -1,8 +1,6 @@
 ﻿using FubuMVC.Core;
-using FubuMVC.Core.Packaging;
 using FubuMVC.Core.Registration;
 using FubuPersistence.RavenDb;
-using FubuCore;
 using StructureMap.Configuration.DSL;
 
 namespace FubuMVC.RavenDb
@@ -13,16 +11,7 @@ namespace FubuMVC.RavenDb
         {
             registry.Policies.Add<TransactionalBehaviorPolicy>();
 
-            var defaultDataDirectory = FubuMvcPackageFacility.GetApplicationPath().ParentDirectory().AppendPath("data");
-            var defaultSettings = new RavenDbSettings
-            {
-                DataDirectory = defaultDataDirectory
-            };
-
-            registry.Services(x => {
-                x.SetServiceIfNone(defaultSettings);
-                x.AddService<Registry, RavenDbRegistry>();
-            });
+            registry.Services(x => { x.AddService<Registry, RavenDbRegistry>(); });
         }
     }
 

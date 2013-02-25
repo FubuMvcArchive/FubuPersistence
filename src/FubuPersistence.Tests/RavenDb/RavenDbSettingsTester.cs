@@ -13,9 +13,14 @@ namespace FubuPersistence.Tests.RavenDb
     public class RavenDbSettingsTester
     {
         [Test]
-        public void build_empty_throws()
+        public void build_empty_does_not_throw_but_connects_to_the_parallel_data_folder()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new RavenDbSettings().Create());
+            using( var store = new RavenDbSettings().Create())
+            {
+                store.ShouldBeOfType<EmbeddableDocumentStore>()
+                     .DataDirectory.ShouldEndWith("data");
+            }
+
         }
 
         [Test]
