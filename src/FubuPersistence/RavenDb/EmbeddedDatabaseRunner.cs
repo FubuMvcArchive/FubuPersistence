@@ -40,43 +40,14 @@ namespace FubuPersistence.RavenDb
 
         public void ClearPersistedState()
         {
-            IEnumerable<Type> types = AppDomain.CurrentDomain.GetAssemblies()
-                                               .SelectMany(a => {
-                                                   try
-                                                   {
-                                                       return a.GetExportedTypes();
-                                                   }
-                                                   catch (Exception)
-                                                   {
-                                                       return new Type[0];
-                                                   }
-                                               }).Where(x => x.IsConcreteTypeOf<IEntity>());
-
-
-            using (IDocumentSession session = _store.OpenSession())
+            if (_store != null)
             {
-                types.Each(type => {
-                    typeof (Deleter<>).CloseAndBuildAs<IDeleter>(type)
-                                      .Delete(session);
-                });
-
-                session.SaveChanges();
+                _store.Dispose();
             }
+
+            Start();
         }
 
-        public class Deleter<T> : IDeleter
-        {
-            public void Delete(IDocumentSession session)
-            {
-                T[] all = session.Query<T>().ToArray();
-                all.Each(x => session.Delete(x));
-            }
-        }
-
-        public interface IDeleter
-        {
-            void Delete(IDocumentSession session);
-        }
 
         public void CommitAllChanges()
         {
