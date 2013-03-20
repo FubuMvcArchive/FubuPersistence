@@ -46,7 +46,7 @@ namespace FubuPersistence.Tests.RavenDb
 
             Debug.WriteLine(store.Url);
 
-            Process.Start("http://localhost:8080");
+            //Process.Start("http://localhost:8080");
 
             var store2 = new DocumentStore
             {
