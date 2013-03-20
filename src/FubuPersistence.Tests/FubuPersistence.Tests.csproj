@@ -120,12 +120,14 @@
     <Compile Include="MultiTenancy\ByTenantStoragePolicyTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDb\DocumentStoreBuilderTester.cs" />
+    <Compile Include="RavenDb\Integration\EmbeddedDatabaseRunnerTester.cs" />
     <Compile Include="RavenDb\Integration\TransactionBehaviorIntegratedTester.cs" />
     <Compile Include="RavenDb\RavenDbSettingsTester.cs" />
     <Compile Include="RavenDb\RavenPersistenceResetTester.cs" />
     <Compile Include="RavenDb\RavenPersistorTester.cs" />
     <Compile Include="RavenDb\RavenTransactionTester.cs" />
     <Compile Include="RavenDb\RavenUnitOfWorkTester.cs" />
+    <Compile Include="RavenDb\the_out_of_the_box_bottle_can_use_raven.cs" />
     <Compile Include="Reset\CompleteResetTester.cs" />
     <Compile Include="InMemory\InMemoryPersistentResetTester.cs" />
     <Compile Include="Storage\GlobalEntityStorageTester.cs" />

@@ -13,6 +13,16 @@ namespace FubuPersistence.Tests.RavenDb
     public class RavenDbSettingsTester
     {
         [Test]
+        public void builds_in_memory()
+        {
+            var settings = new RavenDbSettings {RunInMemory = true};
+            using (var store = settings.Create())
+            {
+                store.ShouldBeOfType<EmbeddableDocumentStore>().RunInMemory.ShouldBeTrue();
+            }
+        }
+
+        [Test]
         public void build_empty_does_not_throw_but_connects_to_the_parallel_data_folder()
         {
             using( var store = new RavenDbSettings().Create())

@@ -66,11 +66,18 @@ namespace FubuPersistence.RavenDb
 
             if (RunInMemory)
             {
-                return new EmbeddableDocumentStore
+                var store = new EmbeddableDocumentStore
                 {
                     RunInMemory = true,
                     UseEmbeddedHttpServer = UseEmbeddedHttpServer
                 };
+
+                if (Url.IsNotEmpty())
+                {
+                    store.Url = Url;
+                }
+
+                return store;
             }
 
             throw new ArgumentOutOfRangeException("settings");
