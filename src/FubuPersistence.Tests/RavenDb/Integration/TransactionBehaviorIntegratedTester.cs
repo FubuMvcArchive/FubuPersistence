@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
-using FubuMVC.SelfHost;
+using FubuMVC.Katana;
 using FubuMVC.StructureMap;
 using FubuPersistence.RavenDb;
+using FubuTestingSupport;
 using NUnit.Framework;
 using System.Linq;
 using Raven.Client;
 using StructureMap;
-using FubuTestingSupport;
-using System.Collections.Generic;
+
 
 namespace FubuPersistence.Tests.RavenDb.Integration
 {

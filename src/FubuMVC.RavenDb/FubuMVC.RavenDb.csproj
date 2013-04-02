@@ -79,9 +79,6 @@
     <Compile Include="TransactionalBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\FubuPersistence\FubuPersistence.csproj">
       <Project>{EA5788C7-1191-4474-B59F-CDC2767A0E3A}</Project>
       <Name>FubuPersistence</Name>

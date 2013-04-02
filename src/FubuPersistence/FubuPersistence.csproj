@@ -109,7 +109,6 @@
     <Compile Include="Storage\StorageFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="RavenDb\packages.config" />
   </ItemGroup>
   <ItemGroup />

@@ -4,6 +4,7 @@ using FubuPersistence.RavenDb;
 using FubuPersistence.Tests.MultiTenancy;
 using FubuTestingSupport;
 using NUnit.Framework;
+using Raven.Client;
 using StructureMap;
 
 namespace FubuPersistence.Tests.RavenDb
@@ -50,6 +51,10 @@ namespace FubuPersistence.Tests.RavenDb
 
             bool wasCalled = false;
 
+            transaction.Execute<IDocumentSession>(session => session.Query<User>().Customize(x => x.WaitForNonStaleResults()).Any().ShouldBeTrue());
+            transaction.Execute<IDocumentSession>(session => session.Query<OtherEntity>().Customize(x => x.WaitForNonStaleResults()).Any().ShouldBeTrue());
+            transaction.Execute<IDocumentSession>(session => session.Query<ThirdEntity>().Customize(x => x.WaitForNonStaleResults()).Any().ShouldBeTrue());
+
             transaction.WithRepository(repo => {
                 repo.All<User>().Count().ShouldEqual(3);
                 repo.All<OtherEntity>().Count().ShouldEqual(2);
@@ -69,6 +74,7 @@ namespace FubuPersistence.Tests.RavenDb
 
             transaction.WithRepository(repo => repo.Update(entity));
 
+            transaction.Execute<IDocumentSession>(session => session.Query<OtherEntity>().Customize(x => x.WaitForNonStaleResults()).Any().ShouldBeTrue());
 
             bool wasCalled = false;
             transaction.WithRepository(repo => {
@@ -91,7 +97,8 @@ namespace FubuPersistence.Tests.RavenDb
             var trackedB1 = new TrackedEntity();
             var trackedB2 = new TrackedEntity();
             var trackedB3 = new TrackedEntity();
-        
+
+
             transaction.WithRepository(tenantA, repo => {
                 repo.Update(trackedA1);
                 repo.Update(trackedA2);
@@ -102,6 +109,10 @@ namespace FubuPersistence.Tests.RavenDb
                 repo.Update(trackedB2);
                 repo.Update(trackedB3);
             });
+
+
+            transaction.Execute<IDocumentSession>(session => session.Query<TrackedEntity>().Customize(x => x.WaitForNonStaleResults()).Any().ShouldBeTrue());
+
 
             transaction.WithRepository(tenantA, repo => {
                 repo.All<TrackedEntity>().ShouldHaveTheSameElementsAs(trackedA1, trackedA2);

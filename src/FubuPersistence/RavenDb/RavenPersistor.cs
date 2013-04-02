@@ -25,7 +25,7 @@ namespace FubuPersistence.RavenDb
 
         public IQueryable<T> LoadAll<T>() where T : IEntity
         {
-            return session.Query<T>().Customize(x => x.WaitForNonStaleResults());
+            return session.Query<T>();
         }
 
         public void Persist<T>(T subject) where T : class, IEntity
@@ -52,7 +52,7 @@ namespace FubuPersistence.RavenDb
 
         public T FindSingle<T>(Expression<Func<T, bool>> filter) where T : class, IEntity
         {
-            var queriedCopy = session.Query<T>().Customize(x => x.WaitForNonStaleResults()).FirstOrDefault(filter);
+            var queriedCopy = session.Query<T>().FirstOrDefault(filter);
             if (queriedCopy == null) return null;
 
             return Find<T>(queriedCopy.Id);
