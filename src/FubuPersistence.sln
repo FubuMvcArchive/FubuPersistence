@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuPersistence", "FubuPersistence\FubuPersistence.csproj", "{EA5788C7-1191-4474-B59F-CDC2767A0E3A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuPersistence.Tests", "FubuPersistence.Tests\FubuPersistence.Tests.csproj", "{E80DC8C6-3BC3-4F00-9939-12BA2B34A4EB}"
