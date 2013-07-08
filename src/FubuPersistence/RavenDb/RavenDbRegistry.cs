@@ -1,4 +1,5 @@
 using FubuPersistence.InMemory;
+using FubuPersistence.RavenDb.Multiple;
 using FubuPersistence.Reset;
 using Raven.Client;
 using StructureMap.Configuration.DSL;

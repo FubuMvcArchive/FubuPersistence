@@ -15,7 +15,7 @@ namespace FubuPersistence.RavenDb.Multiple
         
     }
 
-    public class DocumentStore<T> : IDocumentStore where T : RavenDbSettings
+    public class DocumentStore<T> : IDocumentStore<T> where T : RavenDbSettings
     {
         private readonly IDocumentStore _inner;
 

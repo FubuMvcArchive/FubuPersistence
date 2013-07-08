@@ -1,4 +1,5 @@
 using System;
+using FubuPersistence.RavenDb.Multiple;
 using Raven.Client;
 using StructureMap.Configuration.DSL;
 
@@ -41,6 +42,16 @@ namespace FubuPersistence.RavenDb
             var action = LambdaDocumentStoreConfigurationAction.For(configuration);
             registry.For<IDocumentStoreConfigurationAction>()
                     .Add(action);
+        }
+
+        public static void ConnectToRavenDb<T>(this Registry registry, Action<IDocumentStore> configuration = null) where T : RavenDbSettings
+        {
+            registry.ForSingletonOf<IDocumentStore<T>>().Use(new DocumentStoreInstance<T>());
+
+            if (configuration != null)
+            {
+                registry.RavenDbConfiguration(configuration);
+            }
         }
     }
 }

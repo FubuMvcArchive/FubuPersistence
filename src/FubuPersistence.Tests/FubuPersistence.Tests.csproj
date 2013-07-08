@@ -124,6 +124,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDb\DocumentStoreBuilderTester.cs" />
     <Compile Include="RavenDb\Integration\EmbeddedDatabaseRunnerTester.cs" />
+    <Compile Include="RavenDb\Integration\MultipleDatabaseConstructionTester.cs" />
     <Compile Include="RavenDb\Integration\TransactionBehaviorIntegratedTester.cs" />
     <Compile Include="RavenDb\LambdaDocumentStoreConfigurationTester.cs" />
     <Compile Include="RavenDb\RavenDbSettingsTester.cs" />

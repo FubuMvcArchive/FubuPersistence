@@ -1,15 +1,19 @@
 using System;
 using System.Diagnostics;
+using FubuCore.Util;
 using Raven.Client;
+using StructureMap;
 
 namespace FubuPersistence.RavenDb
 {
     public class SessionBoundary : ISessionBoundary
     {
         private readonly IDocumentStore _store;
-        private Lazy<IDocumentSession> _session;
 
-        public SessionBoundary(IDocumentStore store)
+        private Lazy<IDocumentSession> _session;
+        private readonly Cache<Type, IDocumentSession> _otherSessions; 
+
+        public SessionBoundary(IDocumentStore store, IContainer container)
         {
             _store = store;
 
