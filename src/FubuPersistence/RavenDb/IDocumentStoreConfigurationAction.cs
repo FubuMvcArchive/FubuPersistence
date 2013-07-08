@@ -15,13 +15,13 @@ namespace FubuPersistence.RavenDb
         
     }
 
-    public class LambdaDocumentStoreConfigurationAction : IDocumentStoreConfigurationAction
+    public class LambdaDocumentStoreConfigurationAction<T> : IDocumentStoreConfigurationAction<T> where T : RavenDbSettings
     {
         private readonly Action<IDocumentStore> _configuration;
 
-        public static IDocumentStoreConfigurationAction For(Action<IDocumentStore> configuration)
+        public static IDocumentStoreConfigurationAction<T> For(Action<IDocumentStore> configuration)
         {
-            return new LambdaDocumentStoreConfigurationAction(configuration);
+            return new LambdaDocumentStoreConfigurationAction<T>(configuration);
         }
 
         private LambdaDocumentStoreConfigurationAction(Action<IDocumentStore> configuration)
@@ -39,7 +39,7 @@ namespace FubuPersistence.RavenDb
     {
         public static void RavenDbConfiguration(this Registry registry, Action<IDocumentStore> configuration)
         {
-            var action = LambdaDocumentStoreConfigurationAction.For(configuration);
+            var action = LambdaDocumentStoreConfigurationAction<RavenDbSettings>.For(configuration);
             registry.For<IDocumentStoreConfigurationAction>()
                     .Add(action);
         }
@@ -50,7 +50,9 @@ namespace FubuPersistence.RavenDb
 
             if (configuration != null)
             {
-                registry.RavenDbConfiguration(configuration);
+                var action = LambdaDocumentStoreConfigurationAction<T>.For(configuration);
+                registry.For<IDocumentStoreConfigurationAction<T>>()
+                        .Add(action);
             }
         }
     }

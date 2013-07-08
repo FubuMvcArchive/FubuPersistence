@@ -2,6 +2,7 @@
 using FubuPersistence.RavenDb.Multiple;
 using NUnit.Framework;
 using Raven.Client;
+using Raven.Client.Document;
 using StructureMap;
 using FubuTestingSupport;
 
@@ -16,8 +17,12 @@ namespace FubuPersistence.Tests.RavenDb.Integration
         public void SetUp()
         {
             theContainer = new Container(x => {
-                x.ConnectToRavenDb<SecondDbSettings>();
-                x.ConnectToRavenDb<ThirdDbSettings>();
+                x.ConnectToRavenDb<SecondDbSettings>(store => {
+                    store.Conventions.DefaultQueryingConsistency = ConsistencyOptions.MonotonicRead;
+                });
+                x.ConnectToRavenDb<ThirdDbSettings>(store => {
+                    store.Conventions.DefaultQueryingConsistency = ConsistencyOptions.QueryYourWrites;
+                });
 
                 x.IncludeRegistry<RavenDbRegistry>();
                 x.For<RavenDbSettings>().Use(RavenDbSettings.InMemory);
@@ -34,6 +39,18 @@ namespace FubuPersistence.Tests.RavenDb.Integration
 
             theContainer.GetInstance<IDocumentStore<ThirdDbSettings>>()
                         .ShouldNotBeNull();
+        }
+
+        [Test]
+        public void respects_the_configuration_per_store_setting_type()
+        {
+            theContainer.GetInstance<IDocumentStore<SecondDbSettings>>()
+                        .Conventions.DefaultQueryingConsistency
+                        .ShouldEqual(ConsistencyOptions.MonotonicRead);
+
+            theContainer.GetInstance<IDocumentStore<ThirdDbSettings>>()
+                        .Conventions.DefaultQueryingConsistency
+                        .ShouldEqual(ConsistencyOptions.QueryYourWrites);
         }
 
         [Test]
