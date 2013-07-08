@@ -1,6 +1,7 @@
 ﻿using FubuPersistence.RavenDb;
 using FubuPersistence.RavenDb.Multiple;
 using NUnit.Framework;
+using Raven.Client;
 using StructureMap;
 using FubuTestingSupport;
 
@@ -54,6 +55,24 @@ namespace FubuPersistence.Tests.RavenDb.Integration
             theContainer.GetInstance<IDocumentSession<ThirdDbSettings>>()
                         .ShouldBeOfType<DocumentSession<ThirdDbSettings>>();
         }
+
+        [Test]
+        public void default_raven_store_is_identified_as_Default()
+        {
+            theContainer.GetInstance<IDocumentStore>()
+                        .Identifier.ShouldEqual("Default");
+        }
+
+        [Test]
+        public void other_raven_stores_are_identified_as_the_type()
+        {
+            theContainer.GetInstance<IDocumentStore<SecondDbSettings>>()
+                        .Identifier.ShouldEqual("SecondDbSettings");
+
+            theContainer.GetInstance<IDocumentStore<ThirdDbSettings>>()
+                        .Identifier.ShouldEqual("ThirdDbSettings");
+        }
+
     }
 
     public class SecondDbSettings : RavenDbSettings

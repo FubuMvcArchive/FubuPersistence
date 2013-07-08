@@ -23,6 +23,8 @@ namespace FubuPersistence.RavenDb
         {
             var documentStore = _settings.Create();
 
+            documentStore.Identifier = "Default";
+
             _configurations.Each(x => x.Configure(documentStore));
 
             documentStore.Initialize();
