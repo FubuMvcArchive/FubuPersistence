@@ -29,3 +29,5 @@ fubu-content/
 .links
 data/
 logs/ripple.log
+logs
+Gemfile.lock
