@@ -1,31 +1,46 @@
-using System.Collections.Generic;
+using System;
 using Raven.Client;
-using Raven.Imports.Newtonsoft.Json;
+using StructureMap.Configuration.DSL;
 
 namespace FubuPersistence.RavenDb
 {
-    // TODO -- want all of this to a FubuMVC.RavenDb Bottle
     public interface IDocumentStoreConfigurationAction
     {
         void Configure(IDocumentStore documentStore);
     }
 
-    public class CustomizeRavenJsonSerializer : IDocumentStoreConfigurationAction
+    public interface IDocumentStoreConfigurationAction<T> : IDocumentStoreConfigurationAction where T : RavenDbSettings
     {
-        private readonly IEnumerable<JsonConverter> _converters;
+        
+    }
 
-        public CustomizeRavenJsonSerializer(IEnumerable<JsonConverter> converters)
+    public class LambdaDocumentStoreConfigurationAction : IDocumentStoreConfigurationAction
+    {
+        private readonly Action<IDocumentStore> _configuration;
+
+        public static IDocumentStoreConfigurationAction For(Action<IDocumentStore> configuration)
         {
-            _converters = converters;
+            return new LambdaDocumentStoreConfigurationAction(configuration);
+        }
+
+        private LambdaDocumentStoreConfigurationAction(Action<IDocumentStore> configuration)
+        {
+            _configuration = configuration;
         }
 
         public void Configure(IDocumentStore documentStore)
         {
-            documentStore.Conventions.CustomizeJsonSerializer = s =>
-            {
-                s.TypeNameHandling = TypeNameHandling.All;
-                s.Converters.AddRange(_converters);
-            };
+            _configuration(documentStore);
+        }
+    }
+
+    public static class StructureMapRegistryExtensions
+    {
+        public static void RavenDbConfiguration(this Registry registry, Action<IDocumentStore> configuration)
+        {
+            var action = LambdaDocumentStoreConfigurationAction.For(configuration);
+            registry.For<IDocumentStoreConfigurationAction>()
+                    .Add(action);
         }
     }
 }

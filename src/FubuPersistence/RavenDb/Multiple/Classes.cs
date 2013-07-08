@@ -1,0 +1,4 @@
+﻿namespace FubuPersistence.RavenDb.Multiple
+{
+     
+}
