@@ -26,6 +26,11 @@ namespace FubuPersistence.RavenDb
             return _session.Value;
         }
 
+        public IDocumentSession Session<T>() where T : RavenDbSettings
+        {
+            throw new NotImplementedException();
+        }
+
         public bool WithOpenSession(Action<IDocumentSession> action)
         {
             if (_session != null && _session.IsValueCreated)

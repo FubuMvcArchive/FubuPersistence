@@ -89,6 +89,9 @@
     <Compile Include="RavenDb\IDocumentStoreConfigurationAction.cs" />
     <Compile Include="RavenDb\ISessionBoundary.cs" />
     <Compile Include="RavenDb\Multiple\Classes.cs" />
+    <Compile Include="RavenDb\Multiple\DocumentSession.cs" />
+    <Compile Include="RavenDb\Multiple\DocumentStore.cs" />
+    <Compile Include="RavenDb\Multiple\IDocumentSession.cs" />
     <Compile Include="RavenDb\RavenDbRegistry.cs" />
     <Compile Include="RavenDb\RavenDbSettings.cs" />
     <Compile Include="RavenDb\RavenPersistenceReset.cs" />
