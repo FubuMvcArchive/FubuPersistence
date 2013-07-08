@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using FubuCore.Util;
 using FubuPersistence.RavenDb.Multiple;
@@ -28,9 +29,23 @@ namespace FubuPersistence.RavenDb
             reset();
         }
 
+        private IEnumerable<IDocumentSession> openSessions()
+        {
+            if (_session != null && _session.IsValueCreated)
+            {
+                yield return _session.Value;
+            }
+
+            foreach (var session in _otherSessions)
+            {
+                yield return session;
+            }
+        } 
+
         public void Dispose()
         {
             WithOpenSession(s => s.Dispose());
+            _otherSessions.ClearAll();
         }
 
         public IDocumentSession Session()
@@ -43,15 +58,11 @@ namespace FubuPersistence.RavenDb
             return _otherSessions[typeof (T)];
         }
 
-        public bool WithOpenSession(Action<IDocumentSession> action)
+        public void WithOpenSession(Action<IDocumentSession> action)
         {
-            if (_session != null && _session.IsValueCreated)
-            {
-                action(_session.Value);
-                return true;
-            }
+            openSessions().Each(action);
 
-            return false;
+
         }
 
         public void SaveChanges()

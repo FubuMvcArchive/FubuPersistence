@@ -1,4 +1,5 @@
-﻿using FubuPersistence.RavenDb;
+﻿using System;
+using FubuPersistence.RavenDb;
 using FubuPersistence.RavenDb.Multiple;
 using NUnit.Framework;
 using Raven.Client;
@@ -90,6 +91,36 @@ namespace FubuPersistence.Tests.RavenDb.Integration
                         .Identifier.ShouldEqual("ThirdDbSettings");
         }
 
+
+        [Test]
+        public void session_boundary_respects_transaction_boundaries()
+        {
+            var foo1 = new Foo {Id = Guid.NewGuid(), Name = "Jeremy"};
+            var foo2 = new Foo {Id = foo1.Id, Name = "Josh"};
+
+            var transaction = theContainer.GetInstance<ITransaction>();
+            transaction.Execute<IDocumentSession<SecondDbSettings>>(x => x.Store(foo1));
+            transaction.Execute<IDocumentSession<ThirdDbSettings>>(x => x.Store(foo2));
+
+            transaction.Execute<IDocumentSession<SecondDbSettings>>(session => {
+                session.Load<Foo>(foo1.Id).Name.ShouldEqual("Jeremy");
+            });
+
+            transaction.Execute<IDocumentSession<ThirdDbSettings>>(session =>
+            {
+                session.Load<Foo>(foo1.Id).Name.ShouldEqual("Josh");
+            });
+
+            transaction.Execute<IDocumentSession<SecondDbSettings>>(session =>
+            {
+                session.Load<Foo>(foo1.Id).Name.ShouldEqual("Jeremy");
+            });
+
+            transaction.Execute<IDocumentSession<ThirdDbSettings>>(session =>
+            {
+                session.Load<Foo>(foo1.Id).Name.ShouldEqual("Josh");
+            });
+        }
     }
 
     public class SecondDbSettings : RavenDbSettings
@@ -99,6 +130,12 @@ namespace FubuPersistence.Tests.RavenDb.Integration
 
     public class ThirdDbSettings : RavenDbSettings
     {
+        
+    }
 
+    public class Foo
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }
