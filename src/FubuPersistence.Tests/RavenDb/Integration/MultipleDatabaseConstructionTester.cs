@@ -133,6 +133,8 @@ namespace FubuPersistence.Tests.RavenDb.Integration
         
     }
 
+
+
     public class Foo
     {
         public Guid Id { get; set; }

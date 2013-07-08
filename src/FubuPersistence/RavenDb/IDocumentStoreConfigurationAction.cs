@@ -44,7 +44,7 @@ namespace FubuPersistence.RavenDb
                     .Add(action);
         }
 
-        public static void ConnectToRavenDb<T>(this Registry registry, Action<IDocumentStore> configuration = null) where T : RavenDbSettings
+        public static MultipleDatabaseRegistrationExpression<T> ConnectToRavenDb<T>(this Registry registry, Action<IDocumentStore> configuration = null) where T : RavenDbSettings
         {
             registry.ForSingletonOf<IDocumentStore<T>>().Use(new DocumentStoreInstance<T>());
 
@@ -54,6 +54,28 @@ namespace FubuPersistence.RavenDb
                 registry.For<IDocumentStoreConfigurationAction<T>>()
                         .Add(action);
             }
+
+            return new MultipleDatabaseRegistrationExpression<T>(registry);
         }
+
+    }
+
+
+    public class MultipleDatabaseRegistrationExpression<T>  where T : RavenDbSettings
+    {
+        private readonly Registry _registry;
+
+        public MultipleDatabaseRegistrationExpression(Registry registry)
+        {
+            _registry = registry;
+        }
+
+        public void Using<TInterface, TClass>()
+            where TInterface : IDocumentSession<T> 
+            where TClass : DocumentSession<T>, TInterface
+        {
+            _registry.For<TInterface>().Use<TClass>();
+        }
+
     }
 }
