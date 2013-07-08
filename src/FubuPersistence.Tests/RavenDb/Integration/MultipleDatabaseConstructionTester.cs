@@ -44,6 +44,16 @@ namespace FubuPersistence.Tests.RavenDb.Integration
             theContainer.GetInstance<IDocumentStore<ThirdDbSettings>>()
                         .ShouldBeTheSameAs(theContainer.GetInstance<IDocumentStore<ThirdDbSettings>>());
         }
+
+        [Test]
+        public void can_build_document_session_per_type()
+        {
+            theContainer.GetInstance<IDocumentSession<SecondDbSettings>>()
+                        .ShouldBeOfType<DocumentSession<SecondDbSettings>>();
+
+            theContainer.GetInstance<IDocumentSession<ThirdDbSettings>>()
+                        .ShouldBeOfType<DocumentSession<ThirdDbSettings>>();
+        }
     }
 
     public class SecondDbSettings : RavenDbSettings

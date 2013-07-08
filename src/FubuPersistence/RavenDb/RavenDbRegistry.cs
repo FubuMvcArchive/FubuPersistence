@@ -32,6 +32,8 @@ namespace FubuPersistence.RavenDb
             For<IUnitOfWork>().Use<RavenUnitOfWork>();
 
             For<IPersistenceReset>().Use<RavenPersistenceReset>();
+
+            For(typeof(IDocumentSession<>)).Use(typeof(DocumentSession<>));
         }
     }
 }

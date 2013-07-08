@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using FubuCore.Util;
+using FubuPersistence.RavenDb.Multiple;
 using Raven.Client;
 using StructureMap;
 
@@ -16,6 +17,13 @@ namespace FubuPersistence.RavenDb
         public SessionBoundary(IDocumentStore store, IContainer container)
         {
             _store = store;
+            _otherSessions = new Cache<Type, IDocumentSession>(type => {
+                var otherStore = container.ForGenericType(typeof (IDocumentStore<>))
+                         .WithParameters(type)
+                         .GetInstanceAs<IDocumentStore>();
+
+                return otherStore.OpenSession();
+            });
 
             reset();
         }
@@ -32,7 +40,7 @@ namespace FubuPersistence.RavenDb
 
         public IDocumentSession Session<T>() where T : RavenDbSettings
         {
-            throw new NotImplementedException();
+            return _otherSessions[typeof (T)];
         }
 
         public bool WithOpenSession(Action<IDocumentSession> action)
