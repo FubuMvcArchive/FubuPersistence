@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Raven.Abstractions.Data;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Indexes;
@@ -58,9 +59,9 @@ namespace FubuPersistence.RavenDb.Multiple
             return _inner.Load<T>(ids);
         }
 
-        public IRavenQueryable<T> Query<T>(string indexName)
+        public IRavenQueryable<T> Query<T>(string indexName, bool isMapReduce = false)
         {
-            return _inner.Query<T>(indexName);
+            return _inner.Query<T>(indexName, isMapReduce);
         }
 
         public IRavenQueryable<T> Query<T>()
@@ -88,27 +89,47 @@ namespace FubuPersistence.RavenDb.Multiple
             return _inner.Include<T, TInclude>(path);
         }
 
+        public TResult Load<TTransformer, TResult>(string id) where TTransformer : AbstractTransformerCreationTask, new()
+        {
+            return _inner.Load<TTransformer, TResult>(id);
+        }
+
+        public TResult Load<TTransformer, TResult>(string id, Action<ILoadConfiguration> configure) where TTransformer : AbstractTransformerCreationTask, new()
+        {
+            return _inner.Load<TTransformer, TResult>(id, configure);
+        }
+
+        public TResult[] Load<TTransformer, TResult>(params string[] ids) where TTransformer : AbstractTransformerCreationTask, new()
+        {
+            return _inner.Load<TTransformer, TResult>(ids);
+        }
+
+        public TResult[] Load<TTransformer, TResult>(IEnumerable<string> ids, Action<ILoadConfiguration> configure) where TTransformer : AbstractTransformerCreationTask, new()
+        {
+            return _inner.Load<TTransformer, TResult>(ids, configure);
+        }
+
         public void SaveChanges()
         {
             _inner.SaveChanges();
         }
 
-        public void Store(object entity, Guid etag)
+        public void Store(object entity, Etag etag)
         {
             _inner.Store(entity, etag);
         }
 
-        public void Store(object entity, Guid etag, string id)
+        public void Store(object entity, Etag etag, string id)
         {
             _inner.Store(entity, etag, id);
         }
 
-        public void Store(dynamic entity)
+        public void Store(object entity)
         {
             _inner.Store(entity);
         }
 
-        public void Store(dynamic entity, string id)
+        public void Store(object entity, string id)
         {
             _inner.Store(entity, id);
         }
