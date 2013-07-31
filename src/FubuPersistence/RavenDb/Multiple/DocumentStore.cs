@@ -50,6 +50,11 @@ namespace FubuPersistence.RavenDb.Multiple
             return _inner.AggressivelyCacheFor(cacheDuration);
         }
 
+        public IDisposable AggressivelyCache()
+        {
+            return _inner.AggressivelyCache();
+        }
+
         public IDisposable DisableAggressiveCaching()
         {
             return _inner.DisableAggressiveCaching();
@@ -90,7 +95,12 @@ namespace FubuPersistence.RavenDb.Multiple
             _inner.ExecuteIndex(indexCreationTask);
         }
 
-        public Guid? GetLastWrittenEtag()
+        public void ExecuteTransformer(AbstractTransformerCreationTask transformerCreationTask)
+        {
+            _inner.ExecuteTransformer(transformerCreationTask);
+        }
+
+        public Etag GetLastWrittenEtag()
         {
             return _inner.GetLastWrittenEtag();
         }

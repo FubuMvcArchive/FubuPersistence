@@ -114,9 +114,6 @@
     <Compile Include="Storage\SoftDeletedStoragePolicy.cs" />
     <Compile Include="Storage\StorageFactory.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="RavenDb\packages.config" />
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -66,7 +66,9 @@ namespace FubuPersistence.Tests.RavenDb
             
             using (var session2 = store2.OpenSession())
             {
-                session2.Query<FakeEntity>().Any().ShouldBeTrue();
+                session2.Query<FakeEntity>()
+                    .Customize(x => x.WaitForNonStaleResultsAsOfNow())
+                    .Any().ShouldBeTrue();
             }
         }
     }
