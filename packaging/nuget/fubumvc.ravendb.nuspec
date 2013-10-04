@@ -15,11 +15,11 @@
       <dependency id="FubuPersistence" />
       <dependency id="FubuCore" version="0.9.9.180" />
       <dependency id="FubuMVC.Core" version="0.9.9.1326" />
-      <dependency id="Microsoft.CompilerServices.AsyncTargetingPack" version="1.0.1" />
+      <dependency id="Microsoft.CompilerServices.AsyncTargetingPack" version="[1.0.1]" />
       <dependency id="structuremap" version="2.6.3" />
-      <dependency id="RavenDB.Client" version="2.5.2666" />
-      <dependency id="RavenDB.Database" version="2.5.2666" />
-      <dependency id="RavenDB.Embedded" version="2.5.2666" />
+      <dependency id="RavenDB.Client" version="[2.5.2666]" />
+      <dependency id="RavenDB.Database" version="[2.5.2666]" />
+      <dependency id="RavenDB.Embedded" version="[2.5.2666]" />
     </dependencies>
   </metadata>
   <files>
