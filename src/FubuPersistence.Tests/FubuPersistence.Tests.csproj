@@ -129,6 +129,7 @@
     <Compile Include="RavenDb\Integration\EmbeddedDatabaseRunnerTester.cs" />
     <Compile Include="RavenDb\Integration\MultipleDatabaseConstructionTester.cs" />
     <Compile Include="RavenDb\Integration\plugging_in_a_custom_interface_for_an_additional_database.cs" />
+    <Compile Include="RavenDb\Integration\Replacing_database_settings_tester.cs" />
     <Compile Include="RavenDb\Integration\TransactionBehaviorIntegratedTester.cs" />
     <Compile Include="RavenDb\LambdaDocumentStoreConfigurationTester.cs" />
     <Compile Include="RavenDb\RavenDbSettingsTester.cs" />

@@ -1,4 +1,6 @@
 ﻿using FubuCore.Binding;
+using FubuPersistence.RavenDb;
+using Raven.Client;
 using StructureMap;
 
 namespace FubuPersistence
@@ -9,5 +11,6 @@ namespace FubuPersistence
         {
             arguments.EachService(container.Inject);
         }
+
     }
 }
