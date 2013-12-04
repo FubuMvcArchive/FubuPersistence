@@ -31,6 +31,12 @@ namespace FubuPersistence.Tests.RavenDb.Integration
             });
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            theContainer.Dispose();
+        }
+
         [Test]
         public void session_boundary_respects_transaction_boundaries()
         {

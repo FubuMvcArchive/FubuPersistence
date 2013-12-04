@@ -32,6 +32,12 @@ namespace FubuPersistence.Tests.RavenDb.Integration
             });
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            theContainer.Dispose();
+        }
+
         [Test]
         public void can_create_database_store_per_type()
         {

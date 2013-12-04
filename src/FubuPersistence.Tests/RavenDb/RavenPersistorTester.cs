@@ -42,6 +42,7 @@ namespace FubuPersistence.Tests.RavenDb
         public void TearDown()
         {
             nested.Dispose();
+            container.Dispose();
         }
 
         [Test]

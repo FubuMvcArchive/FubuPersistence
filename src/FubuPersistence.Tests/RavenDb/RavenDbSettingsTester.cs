@@ -40,6 +40,8 @@ namespace FubuPersistence.Tests.RavenDb
 
             var store = settings.Create();
             store.ShouldBeOfType<EmbeddableDocumentStore>().RunInMemory.ShouldBeTrue();
+
+            store.Dispose();
         }
 
         [Test]
@@ -60,6 +62,8 @@ namespace FubuPersistence.Tests.RavenDb
             });
             store.RunInMemory.ShouldBeTrue();
             store.UseEmbeddedHttpServer.ShouldBeTrue();
+
+            store.Dispose();
         }
 
         [Test]
@@ -72,6 +76,8 @@ namespace FubuPersistence.Tests.RavenDb
             });
             store.DataDirectory.ShouldEqual("data".ToFullPath());
             store.UseEmbeddedHttpServer.ShouldBeTrue();
+
+            store.Dispose();
         }
 
         [Test]
@@ -80,6 +86,7 @@ namespace FubuPersistence.Tests.RavenDb
             var store = createStore<EmbeddableDocumentStore>(x => x.DataDirectory = "data".ToFullPath());
             store.DataDirectory.ShouldEqual("data".ToFullPath());
             store.UseEmbeddedHttpServer.ShouldBeFalse();
+            store.Dispose();
         }
 
         [Test]
@@ -87,6 +94,8 @@ namespace FubuPersistence.Tests.RavenDb
         {
             var store = createStore<DocumentStore>(x => x.Url = "http://somewhere:8080");
             store.Url.ShouldEqual("http://somewhere:8080");
+
+            store.Dispose();
         }
 
         [Test]
@@ -114,7 +123,10 @@ namespace FubuPersistence.Tests.RavenDb
         {
             var settings = new RavenDbSettings();
             if (setup != null) setup(settings);
-            return settings.Create().ShouldBeOfType<T>();
+            using (var documentStore = settings.Create())
+            {
+                return documentStore.ShouldBeOfType<T>();
+            }
         }
     }
 }

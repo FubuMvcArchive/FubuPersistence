@@ -24,10 +24,15 @@ namespace FubuPersistence.Tests.RavenDb
         [Test]
         public void raven_is_available_out_of_the_box()
         {
-            var container = new Container();
-            var application = FubuApplication.DefaultPolicies().StructureMap(container).Bootstrap();
+            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(8080);
 
-            container.GetInstance<IDocumentStore>().ShouldNotBeNull();
+            var container = new Container();
+            using (var application = FubuApplication.DefaultPolicies().StructureMap(container).Bootstrap())
+            {
+                container.GetInstance<IDocumentStore>().ShouldNotBeNull();
+            }
+
+            
         }
 
         [Test]

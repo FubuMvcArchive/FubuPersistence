@@ -24,6 +24,8 @@ namespace FubuPersistence.Tests.RavenDb
             var store = builder.Build().ShouldBeOfType<EmbeddableDocumentStore>();
             store.RunInMemory.ShouldBeTrue();
             store.Conventions.CustomizeJsonSerializer.ShouldNotBeNull();
+
+            store.Dispose();
         }
     }
 }

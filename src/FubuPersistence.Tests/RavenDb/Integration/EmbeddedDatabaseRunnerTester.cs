@@ -28,6 +28,7 @@ namespace FubuPersistence.Tests.RavenDb.Integration
         public void FixtureTeardown()
         {
             theRunner.Dispose();
+            container.Dispose();
         }
 
         [Test]
