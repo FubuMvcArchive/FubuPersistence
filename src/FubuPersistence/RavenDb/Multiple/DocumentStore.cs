@@ -60,6 +60,11 @@ namespace FubuPersistence.RavenDb.Multiple
             return _inner.DisableAggressiveCaching();
         }
 
+        public IDisposable SetRequestsTimeoutFor(TimeSpan timeout)
+        {
+            return _inner.SetRequestsTimeoutFor(timeout);
+        }
+
         public IDocumentStore Initialize()
         {
             throw new NotSupportedException("This is a wrapped IDocumentStore that will already be initialized");
