@@ -14,9 +14,9 @@
     <dependencies>
       <dependency id="FubuCore" version="0.9.9.180" />
       <dependency id="structuremap" version="2.6.3" />
-      <dependency id="RavenDB.Client" version="2.5.2750.0" />
-      <dependency id="RavenDB.Database" version="2.5.2750.0" />
-      <dependency id="RavenDB.Embedded" version="2.5.2750.0" />
+      <dependency id="RavenDB.Client" version="[2.5.2750.0]" />
+      <dependency id="RavenDB.Database" version="[2.5.2750.0]" />
+      <dependency id="RavenDB.Embedded" version="[2.5.2750.0]" />
     </dependencies>
   </metadata>
   <files xmlns="">
