@@ -177,6 +177,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Spatial">
+      <HintPath>..\packages\System.Spatial\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
