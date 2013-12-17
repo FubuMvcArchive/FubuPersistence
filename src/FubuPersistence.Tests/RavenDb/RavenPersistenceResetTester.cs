@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Threading;
+using FubuMVC.Core.Registration.Nodes;
 using FubuPersistence.RavenDb;
 using FubuPersistence.RavenDb.Multiple;
 using FubuPersistence.Reset;
@@ -7,6 +9,7 @@ using FubuTestingSupport;
 using NUnit.Framework;
 using StructureMap;
 using FubuCore;
+using Process = System.Diagnostics.Process;
 
 namespace FubuPersistence.Tests.RavenDb
 {
@@ -33,6 +36,14 @@ namespace FubuPersistence.Tests.RavenDb
             container.Dispose();
         }
 
+        [Test, Explicit("Manual only testing")]
+        public void can_access_the_new_store_by_url()
+        {
+            theReset.ClearPersistedState();
+            Process.Start("http://localhost:8080");
+            Thread.Sleep(60000);
+        }
+
         [Test]
         public void can_find_other_setting_types()
         {
@@ -43,6 +54,8 @@ namespace FubuPersistence.Tests.RavenDb
             theReset.As<RavenPersistenceReset>()
                 .FindOtherSettingTypes()
                 .ShouldHaveTheSameElementsAs(typeof(SecondDbSettings), typeof(ThirdDbSettings), typeof(FourthDbSettings));
+        
+        
         }
 
         [Test]
@@ -73,7 +86,7 @@ namespace FubuPersistence.Tests.RavenDb
 
 }
 
-[TestFixture]
+[TestFixture, Explicit("some cleanup problems here.")]
 public class when_clearing_persisted_state_with_multiple_settings
 {
     [Test]
@@ -107,7 +120,5 @@ public class when_clearing_persisted_state_with_multiple_settings
 
         newSettings.Url.ShouldBeNull();
         newSettings.ConnectionString.ShouldBeNull();
-
-        
     }
 }

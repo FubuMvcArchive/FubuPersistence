@@ -50,6 +50,8 @@ namespace FubuPersistence.Tests.RavenDb
             var store = createStore<EmbeddableDocumentStore>(x => x.RunInMemory = true);
             store.RunInMemory.ShouldBeTrue();
             store.UseEmbeddedHttpServer.ShouldBeFalse();
+
+            store.Dispose();
         }
 
         [Test]

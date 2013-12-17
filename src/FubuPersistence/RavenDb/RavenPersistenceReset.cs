@@ -24,8 +24,15 @@ namespace FubuPersistence.RavenDb
             _container.Model.For<IDocumentStore>().Default.EjectObject();
             _container.Inject(new RavenDbSettings
             {
-                RunInMemory = true
+                RunInMemory = true,
+                UseEmbeddedHttpServer = true
             });
+
+            // Force the container to spin it up now just in case other things
+            // are trying access the store remotely
+            var store = _container.GetInstance<IDocumentStore>();
+            Debug.WriteLine("Opening up a new in memory RavenDb IDocumentStore at " + store.Url);
+
 
             var otherSettingTypes = FindOtherSettingTypes();
 
@@ -39,7 +46,12 @@ namespace FubuPersistence.RavenDb
 
                 var documentStoreType = typeof (IDocumentStore<>).MakeGenericType(type);
                 _container.Model.For(documentStoreType).Default.EjectObject();
+
+                // Force the container to spin it up now just in case other things
+                // are trying access the store remotely
+                _container.GetInstance(documentStoreType);
             });
+
         }
 
         public IList<Type> FindOtherSettingTypes()
