@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuMVC.RavenDb", "FubuMVC.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuPersistenceHarness", "FubuPersistenceHarness\FubuPersistenceHarness.csproj", "{3ADA9595-D3F5-4874-B154-BA78661C2113}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuPersistence.Docs", "FubuPersistence.Docs\FubuPersistence.Docs.csproj", "{DAE9D7F5-4B38-477A-B198-AB10B354504F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{3ADA9595-D3F5-4874-B154-BA78661C2113}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ADA9595-D3F5-4874-B154-BA78661C2113}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3ADA9595-D3F5-4874-B154-BA78661C2113}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAE9D7F5-4B38-477A-B198-AB10B354504F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAE9D7F5-4B38-477A-B198-AB10B354504F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAE9D7F5-4B38-477A-B198-AB10B354504F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAE9D7F5-4B38-477A-B198-AB10B354504F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

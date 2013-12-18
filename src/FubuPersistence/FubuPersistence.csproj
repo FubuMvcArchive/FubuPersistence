@@ -125,12 +125,12 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ContainerExtensions.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="EntityRepository.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IEntityRepository.cs" />
     <Compile Include="IEntityRepositoryBuilder.cs" />
-    <Compile Include="ContainerExtensions.cs" />
     <Compile Include="InMemory\DelegatingTransaction.cs" />
     <Compile Include="InMemory\InMemoryPersistenceRegistry.cs" />
     <Compile Include="InMemory\InMemoryPersistenceReset.cs" />
@@ -151,9 +151,9 @@
     <Compile Include="RavenDb\IDocumentStoreBuilder.cs" />
     <Compile Include="RavenDb\IDocumentStoreConfigurationAction.cs" />
     <Compile Include="RavenDb\ISessionBoundary.cs" />
-    <Compile Include="RavenDb\Multiple\DocumentStoreBuilder.cs" />
     <Compile Include="RavenDb\Multiple\DocumentSession.cs" />
     <Compile Include="RavenDb\Multiple\DocumentStore.cs" />
+    <Compile Include="RavenDb\Multiple\DocumentStoreBuilder.cs" />
     <Compile Include="RavenDb\Multiple\DocumentStoreInstance.cs" />
     <Compile Include="RavenDb\Multiple\IDocumentSession.cs" />
     <Compile Include="RavenDb\RavenDbRegistry.cs" />
