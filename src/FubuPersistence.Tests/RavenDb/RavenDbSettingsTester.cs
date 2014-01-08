@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Threading;
+using FubuMVC.Core.Registration.Nodes;
 using FubuPersistence.RavenDb;
 using FubuTestingSupport;
 using NUnit.Framework;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Embedded;
+using Raven.Client.Linq;
 using Raven.Database.Extensions;
+using Wintellect.PowerCollections;
+using Process = System.Diagnostics.Process;
 
 namespace FubuPersistence.Tests.RavenDb
 {
@@ -21,6 +26,32 @@ namespace FubuPersistence.Tests.RavenDb
                 store.ShouldBeOfType<EmbeddableDocumentStore>().RunInMemory.ShouldBeTrue();
             }
         }
+
+        [Test]
+        public void uses_the_port_number_if_it_is_non_zero()
+        {
+            var settings = new RavenDbSettings { RunInMemory = true, Port = 8081};
+
+            using (var store = settings.Create())
+            {
+                store.ShouldBeOfType<EmbeddableDocumentStore>()
+                    .Configuration.Port.ShouldEqual(8081);
+            }
+        }
+
+        [Test]
+        public void uses_default_port_number_if_none()
+        {
+            var settings = new RavenDbSettings { RunInMemory = true };
+
+            using (var store = settings.Create())
+            {
+                // 8080 is RavenDb's default port number
+                store.ShouldBeOfType<EmbeddableDocumentStore>()
+                    .Configuration.Port.ShouldEqual(8080);
+            }
+        }
+
 
         [Test]
         public void build_empty_does_not_throw_but_connects_to_the_parallel_data_folder()
@@ -130,5 +161,38 @@ namespace FubuPersistence.Tests.RavenDb
                 return documentStore.ShouldBeOfType<T>();
             }
         }
+
+        [Test, Explicit]
+        public void load_a_store_with_explicit_port_see_the_hosted_url()
+        {
+            var settings = new RavenDbSettings {RunInMemory = true, Port = 8082, UseEmbeddedHttpServer = true};
+            using (var store = settings.Create())
+            {
+                store.Initialize();
+
+                using (var session = store.OpenSession())
+                {
+                    session.Store(new House
+                    {
+                        Whose = "Mine",
+                        Id = Guid.NewGuid()
+                    });
+
+                    session.SaveChanges();
+                }
+
+
+                Process.Start("http://localhost:8082");
+
+                Thread.Sleep(30000);
+
+
+            }
+        }
+    }
+
+    public class House : Entity
+    {
+        public string Whose { get; set; }
     }
 }

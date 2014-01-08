@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using FubuPersistence.Storage;
 using FubuTestingSupport;
 using NUnit.Framework;
@@ -30,7 +31,12 @@ namespace FubuPersistence.Tests
             theStorage.AssertWasCalled(x => x.Update(theEntity));
         }
 
+        public static void Try()
+        {
+            ConfigurationManager.AppSettings.Set("Raven/Port", "8081");
 
+            ConfigurationManager.AppSettings.Get("Raven/Port").ShouldEqual("8081");
+        }
 
     }
 }

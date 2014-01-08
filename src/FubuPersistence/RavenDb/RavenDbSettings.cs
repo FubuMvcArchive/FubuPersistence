@@ -13,6 +13,7 @@ namespace FubuPersistence.RavenDb
         public bool RunInMemory { get; set; }
         public string Url { get; set; }
         public bool UseEmbeddedHttpServer { get; set; }
+        public int Port { get; set; }
 
         public static RavenDbSettings InMemory()
         {
@@ -75,6 +76,11 @@ namespace FubuPersistence.RavenDb
                 if (Url.IsNotEmpty())
                 {
                     store.Url = Url;
+                }
+
+                if (Port > 0)
+                {
+                    store.Configuration.Port = Port;
                 }
 
                 return store;

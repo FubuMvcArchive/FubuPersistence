@@ -10,4 +10,15 @@
   <TeamCityBuildType />
   <BottleName>FubuPersistence.Docs</BottleName>
   <PluginTo />
+  <Nugets>
+    <PublishedNuget>
+      <Name>FubuMVC.RavenDb45</Name>
+      <Description>Drop in persistence with RavenDb for FubuMVC / StructureMap applications</Description>
+    </PublishedNuget>
+    <PublishedNuget>
+      <Name>FubuPersistence45</Name>
+      <Description>Foundation framework for basic persistence scenarios</Description>
+    </PublishedNuget>
+  </Nugets>
+  <Url>fubupersistence</Url>
 </ProjectRoot>

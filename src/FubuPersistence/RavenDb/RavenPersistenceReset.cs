@@ -65,5 +65,10 @@ namespace FubuPersistence.RavenDb
         {
             // no-op for now
         }
+
+        public static void Try()
+        {
+            
+        }
     }
 }
