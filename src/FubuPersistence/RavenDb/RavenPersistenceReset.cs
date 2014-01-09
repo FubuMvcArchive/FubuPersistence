@@ -7,6 +7,7 @@ using StructureMap;
 using System.Linq;
 using FubuCore;
 using System.Collections.Generic;
+using Wintellect.PowerCollections;
 
 namespace FubuPersistence.RavenDb
 {
@@ -21,12 +22,16 @@ namespace FubuPersistence.RavenDb
 
         public void ClearPersistedState()
         {
+            var ports = new List<int>();
+
             _container.Model.For<IDocumentStore>().Default.EjectObject();
             _container.Inject(new RavenDbSettings
             {
                 RunInMemory = true,
                 UseEmbeddedHttpServer = true
             });
+
+            ports.Add(8080);
 
             // Force the container to spin it up now just in case other things
             // are trying access the store remotely
@@ -41,6 +46,17 @@ namespace FubuPersistence.RavenDb
                 settings.Url = null;
                 settings.ConnectionString = null;
                 settings.RunInMemory = true;
+
+                if (ports.Contains(settings.Port))
+                {
+                    var port = ports.Max() + 1;
+                    settings.Port = port;
+                    ports.Add(port);
+                }
+
+                Debug.WriteLine("Starting a new database for {0} at http://localhost:{1}", type.Name, settings.Port);
+
+                settings.UseEmbeddedHttpServer = true;
 
                 _container.Inject(type, settings);
 
