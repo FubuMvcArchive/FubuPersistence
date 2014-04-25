@@ -9,13 +9,12 @@ namespace FubuMVC.RavenDb
     {
         public void Configure(FubuRegistry registry)
         {
-            registry.Policies.Add<TransactionalBehaviorPolicy>();
+            registry.Policies.Global.Add<TransactionalBehaviorPolicy>();
 
-            registry.Services(x => { x.AddService<Registry, RavenDbRegistry>(); });
+            registry.Services(x => x.AddService<Registry, RavenDbRegistry>());
         }
     }
 
-    [ConfigurationType(ConfigurationType.InjectNodes)]
     public class TransactionalBehaviorPolicy : Policy
     {
         public TransactionalBehaviorPolicy()
