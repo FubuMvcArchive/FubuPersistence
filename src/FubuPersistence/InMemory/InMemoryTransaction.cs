@@ -19,7 +19,7 @@ namespace FubuPersistence.InMemory
             using (var nested = _container.GetNestedContainer())
             {
                 var explicits = new ExplicitArguments();
-                arguments.EachService(explicits.Set);
+                arguments.EachService((type, o) =>  explicits.Set(type, o));
 
                 action(nested.GetInstance<T>(explicits));
             }

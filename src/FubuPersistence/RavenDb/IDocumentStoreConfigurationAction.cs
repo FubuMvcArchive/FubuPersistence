@@ -46,7 +46,7 @@ namespace FubuPersistence.RavenDb
 
         public static MultipleDatabaseRegistrationExpression<T> ConnectToRavenDb<T>(this Registry registry, Action<IDocumentStore> configuration = null) where T : RavenDbSettings
         {
-            registry.ForSingletonOf<IDocumentStore<T>>().Use(new DocumentStoreInstance<T>());
+            registry.ForSingletonOf<IDocumentStore<T>>().UseInstance(new DocumentStoreInstance<T>());
 
             if (configuration != null)
             {

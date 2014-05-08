@@ -12,7 +12,7 @@ namespace FubuPersistence.InMemory
         public PersistenceRegistry()
         {
             // This acts as "SetServiceIfNone"
-            For<ISystemTime>().Add(SystemTime.Default());
+            For<ISystemTime>().UseIfNone(() => SystemTime.Default());
             For<IInitialState>().Add<NulloInitialState>();
             For<ITenantContext>().Add<NulloTenantContext>();
 

@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading;
+using System.Linq;
 using FubuMVC.Core;
-using FubuMVC.Core.Registration.Nodes;
-using FubuPersistence.RavenDb;
-using NUnit.Framework;
 using FubuMVC.StructureMap;
+using FubuPersistence.RavenDb;
+using FubuTestingSupport;
+using NUnit.Framework;
 using Raven.Client;
 using Raven.Client.Document;
-using Raven.Client.Embedded;
 using Raven.Database.Server;
 using StructureMap;
-using FubuTestingSupport;
-using FubuCore;
-using Process = System.Diagnostics.Process;
-using System.Linq;
 
 namespace FubuPersistence.Tests.RavenDb
 {
@@ -31,8 +26,6 @@ namespace FubuPersistence.Tests.RavenDb
             {
                 container.GetInstance<IDocumentStore>().ShouldNotBeNull();
             }
-
-            
         }
 
         [Test]
@@ -61,14 +54,14 @@ namespace FubuPersistence.Tests.RavenDb
 
             store2.Initialize();
 
-            var entity1 = new FakeEntity { Id = Guid.NewGuid() };
+            var entity1 = new FakeEntity {Id = Guid.NewGuid()};
 
             using (var session = store2.OpenSession())
             {
                 session.Store(entity1);
                 session.SaveChanges();
             }
-            
+
             using (var session2 = store2.OpenSession())
             {
                 session2.Query<FakeEntity>()
@@ -80,7 +73,6 @@ namespace FubuPersistence.Tests.RavenDb
 
     public class FakeEntity : Entity
     {
-        
     }
 
     public class SampleEntity : Entity

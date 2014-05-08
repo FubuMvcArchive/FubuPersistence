@@ -15,7 +15,7 @@
       <dependency id="FubuPersistence45" />
       <dependency id="FubuCore" version="0.9.9.180" />
       <dependency id="FubuMVC.Core" version="2.0.0.1771" />
-      <dependency id="structuremap" version="2.6.3" />
+      <dependency id="structuremap" version="3.0.3.116" />
     </dependencies>
   </metadata>
   <files xmlns="">

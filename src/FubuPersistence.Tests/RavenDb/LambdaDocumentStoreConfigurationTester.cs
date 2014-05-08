@@ -22,7 +22,7 @@ namespace FubuPersistence.Tests.RavenDb
             var container = new Container(x => {
                 x.IncludeRegistry<RavenDbRegistry>();
                 x.IncludeRegistry(registry);
-                x.For<RavenDbSettings>().Use(RavenDbSettings.InMemory);
+                x.For<RavenDbSettings>().Use(() => RavenDbSettings.InMemory());
             });
 
             container.GetInstance<IDocumentStore>().Conventions
@@ -44,7 +44,7 @@ namespace FubuPersistence.Tests.RavenDb
             {
                 x.IncludeRegistry<RavenDbRegistry>();
                 x.IncludeRegistry(registry);
-                x.For<RavenDbSettings>().Use(RavenDbSettings.InMemory);
+                x.For<RavenDbSettings>().Use(() => RavenDbSettings.InMemory());
             });
 
             container.GetInstance<IDocumentStore>().Conventions

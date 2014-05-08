@@ -26,7 +26,7 @@ namespace FubuPersistence.Tests.RavenDb.Integration
                 });
 
                 x.IncludeRegistry<RavenDbRegistry>();
-                x.For<RavenDbSettings>().Use(RavenDbSettings.InMemory);
+                x.For<RavenDbSettings>().Use(() => RavenDbSettings.InMemory());
                 x.For<SecondDbSettings>().Use(new SecondDbSettings {RunInMemory = true});
                 x.For<ThirdDbSettings>().Use(new ThirdDbSettings {RunInMemory = true});
             });
