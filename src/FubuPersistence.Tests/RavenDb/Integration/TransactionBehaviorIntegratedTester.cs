@@ -5,6 +5,7 @@ using System.Net;
 using FubuMVC.Core;
 using FubuMVC.Core.Ajax;
 using FubuMVC.Katana;
+using FubuMVC.RavenDb;
 using FubuMVC.StructureMap;
 using FubuPersistence.RavenDb;
 using FubuTestingSupport;
@@ -49,6 +50,7 @@ namespace FubuPersistence.Tests.RavenDb.Integration
         public NamedEntityRegistry()
         {
             Services(x => x.ReplaceService(new RavenDbSettings { RunInMemory = true}));
+            Policies.Local.Add<TransactionalBehaviorPolicy>();
         }
     }
 
