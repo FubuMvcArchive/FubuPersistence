@@ -32,7 +32,7 @@ namespace FubuPersistence.Tests.RavenDb.Integration
                 application.Endpoints.PostJson(new NamedEntity {Name = "Josh"}).StatusCode.ShouldEqual(HttpStatusCode.OK);
                 application.Endpoints.PostJson(new NamedEntity {Name = "Vyrak"}).StatusCode.ShouldEqual(HttpStatusCode.OK);
             
-                application.Services.GetInstance<ITransaction>().Execute<IDocumentSession>(session => {
+                application.Services.Get<ITransaction>().Execute<IDocumentSession>(session => {
                     session.Query<NamedEntity>()
                            .Customize(x => x.WaitForNonStaleResults())
                            .Each(x => Debug.WriteLine(x.Name));
