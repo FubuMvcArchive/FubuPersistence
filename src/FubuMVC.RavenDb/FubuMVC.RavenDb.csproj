@@ -147,6 +147,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDbFubuRegistryExtension.cs" />
     <Compile Include="TransactionalBehavior.cs" />
+    <Compile Include="TransactionalBehaviorRavenSessionUsageMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FubuPersistence\FubuPersistence.csproj">

@@ -151,6 +151,7 @@
     <Compile Include="MultiTenancy\NulloTenantContext.cs" />
     <Compile Include="MultiTenancy\SimpleTenantContext.cs" />
     <Compile Include="RavenDb\CustomizeRavenJsonSerializer.cs" />
+    <Compile Include="RavenDb\DisposeRavenSessionMessage.cs" />
     <Compile Include="RavenDb\EmbeddedDatabaseRunner.cs" />
     <Compile Include="RavenDb\IDocumentStoreBuilder.cs" />
     <Compile Include="RavenDb\IDocumentStoreConfigurationAction.cs" />

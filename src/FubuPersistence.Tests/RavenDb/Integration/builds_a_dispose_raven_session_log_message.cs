@@ -1,7 +1,7 @@
 ﻿using System.Security.Principal;
 using System.Threading;
 using FubuMVC.Core.Http.Owin;
-using FubuMVC.RavenDb;
+using FubuPersistence.RavenDb;
 using FubuTestingSupport;
 using NUnit.Framework;
 using Raven.Client;
@@ -9,9 +9,9 @@ using Rhino.Mocks;
 
 namespace FubuPersistence.Tests.RavenDb.Integration
 {
-    public class builds_a_raven_session_log_message
+    public class builds_a_dispose_raven_session_log_message
     {
-        private RavenSessionLogMessage theMessage;
+        private DisposeRavenSessionMessage theMessage;
 
         [SetUp]
         public void SetUp()
@@ -25,17 +25,12 @@ namespace FubuPersistence.Tests.RavenDb.Integration
 
             var request = new OwinHttpRequest();
             request.FullUrl("http://something/somethingelse");
+            request.HttpMethod("GET");
 
             var currentPrincipal = new GenericPrincipal(new GenericIdentity("bob"), new string[0]);
             Thread.CurrentPrincipal = currentPrincipal;
 
-            theMessage = RavenSessionLogMessage.For(session, request);
-        }
-
-        [Test]
-        public void the_url_is_correct()
-        {
-            theMessage.Url.ShouldEqual("http://something/somethingelse");
+            theMessage = DisposeRavenSessionMessage.For(session);
         }
 
         [Test]

@@ -188,7 +188,8 @@
     <Compile Include="MultiTenancy\ByTenantStoragePolicyTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenDb\DocumentStoreBuilderTester.cs" />
-    <Compile Include="RavenDb\Integration\builds_a_raven_session_log_message.cs" />
+    <Compile Include="RavenDb\Integration\builds_a_dispose_raven_session_log_message.cs" />
+    <Compile Include="RavenDb\Integration\builds_a_transactional_behavior_raven_session_log_message.cs" />
     <Compile Include="RavenDb\Integration\EmbeddedDatabaseRunnerTester.cs" />
     <Compile Include="RavenDb\Integration\MultipleDatabaseConstructionTester.cs" />
     <Compile Include="RavenDb\Integration\plugging_in_a_custom_interface_for_an_additional_database.cs" />

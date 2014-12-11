@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using FubuCore.Logging;
 using FubuCore.Util;
 using FubuPersistence.RavenDb.Multiple;
 using Raven.Client;
@@ -11,13 +12,15 @@ namespace FubuPersistence.RavenDb
     public class SessionBoundary : ISessionBoundary
     {
         private readonly IDocumentStore _store;
+        private readonly ILogger _logger;
 
         private Lazy<IDocumentSession> _session;
         private readonly Cache<Type, IDocumentSession> _otherSessions; 
 
-        public SessionBoundary(IDocumentStore store, IContainer container)
+        public SessionBoundary(IDocumentStore store, IContainer container, ILogger logger)
         {
             _store = store;
+            _logger = logger;
             _otherSessions = new Cache<Type, IDocumentSession>(type => {
                 var otherStore = container.ForGenericType(typeof (IDocumentStore<>))
                          .WithParameters(type)
@@ -44,7 +47,11 @@ namespace FubuPersistence.RavenDb
 
         public void Dispose()
         {
-            WithOpenSession(s => s.Dispose());
+            WithOpenSession(s =>
+            {
+                _logger.DebugMessage(() => DisposeRavenSessionMessage.For(s));
+                s.Dispose();
+            });
             _otherSessions.ClearAll();
         }
 
@@ -61,8 +68,6 @@ namespace FubuPersistence.RavenDb
         public void WithOpenSession(Action<IDocumentSession> action)
         {
             openSessions().Each(action);
-
-
         }
 
         public void SaveChanges()
